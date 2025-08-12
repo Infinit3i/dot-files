@@ -66,3 +66,4 @@
 * **Tor Browser**
 * **Spotify**
 * **Signal**
+* Discord
