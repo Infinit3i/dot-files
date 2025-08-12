@@ -59,8 +59,6 @@
 * `ufw` + `gufw` – firewall
 
 ### Applications
-* **Firefox**
-* **Google Chrome**
 * **Visual Studio Code**
 * **Obsidian**
 * **Tor Browser**
@@ -68,3 +66,15 @@
 * **Signal**
 * Discord
 * virtualbox
+* zen
+  - bitwarden
+  - unhook
+  - privacy badger
+  - pie adblock
+  - ghostly
+  - adblock
+  - wappalyzer
+  - read aloud
+  - dark reader
+ 
+https://75.136.238.63:33443/login
