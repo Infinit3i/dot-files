@@ -58,6 +58,11 @@
 * `timeshift` – system snapshots
 * `ufw` + `gufw` – firewall
 
----
-
-If you want, I can give you a **minimal Arch + Hyprland install command list** that sets all this up in one go so you don’t have to piece it together. This way you can literally paste it after the base install and be ready to go. Would you like me to make that?
+### Applications
+* **Firefox**
+* **Google Chrome**
+* **Visual Studio Code**
+* **Obsidian**
+* **Tor Browser**
+* **Spotify**
+* **Signal**
