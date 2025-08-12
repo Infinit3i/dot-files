@@ -1,7 +1,3 @@
-If you’re going to run **Arch + Hyprland** and want a smooth, fully functional install, you’ll likely also want to include the following **core components** beyond what you listed:
-
----
-
 ### **Base & Essential Packages**
 
 * `base` `base-devel` – core Arch system and build tools
