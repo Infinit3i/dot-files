@@ -9,9 +9,9 @@
 
     //"height": 20,
 
-    "margin-left": 10,
+    "margin-left": 15,
     "margin-bottom": 0,
-    "margin-right": 10,
+    "margin-right": 15,
 
     "spacing": 5, // Gaps between modules (4px)
 
@@ -31,9 +31,9 @@
         //"custom/gammastep"
     ],
     "modules-right": [
-	"custom/low_ports",
-    	"custom/ip_internal",
-    	"custom/ip_external",
+	"custom-low-ports",
+    	"custom/ip-internal",
+    	"custom/ip-external",
         "backlight",
         "custom/storage",
         "memory",
@@ -49,21 +49,23 @@
     // -------------------------------------------------------------------------
     // Modules
     // -------------------------------------------------------------------------
-    "custom/low_ports": {
+
+    "custom-low-ports": {
  	   "format": "Ports: {}",
    	 "interval": 5,
     	"exec": "ss -t4n state established '( sport < 30000 )' | awk 'NR>1 {split($4,l,\":\"); split($5,r,\":\"); print r[2]}' | paste -sd ',' -"
     },
-    "custom/ip_internal": {
+    "custom/ip-internal": {
   	 "format": "LAN: {}",
-   	 "interval": 10,
+   	 "interval": 30,
 	 "exec": "ip -4 addr show enp0s31f6 | grep 'inet ' | awk '{print $2}' | cut -d/ -f1"
     },
-    "custom/ip_external": {
+    "custom/ip-external": {
    	 "format": "WAN: {}",
    	 "interval": 600,
     	"exec": "curl -4 -s ifconfig.me"
     },
+
     "custom/sp1": {
         "format": " | ",
         "tooltip": false
@@ -169,7 +171,8 @@
         "exec": "curl -s 'https://wttr.in/Jaksonville,NC?format=1&u'",
         //"return-type": "json",
         //"exec": "~/.config/waybar/modules/weather.sh",
-        "exec-if": "ping wttr.in -c1"
+        "exec-if": "ping wttr.in -c1",
+        "on-click": "xdg-open 'https://weather.com/weather/today/l/8ca85fbdeecb61cbabfcfd3779fa124756d402e52ed24db40f4eff41977c8b63'"
     },
     "custom/pacman": {
         "format": "<big>􏆲</big>  {}",
@@ -186,7 +189,7 @@
     "exec": "~/.config/waybar/mediaplayer.py --player spotify",
     "format": "{}  ",
     "return-type": "json",
-    "on-click": "playerctl play-pause",
+    "on-click": "pgrep spotify >/dev/null && playerctl --player=spotify play-pause || spotify &",
     "on-scroll-up": "playerctl next",
     "on-scroll-down": "playerctl previous"
 },

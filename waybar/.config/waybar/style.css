@@ -99,10 +99,13 @@ window#waybar.hidden {
 #custom-weather.rainyNight,
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
-#custom-weather.default {
+#custom-weather.default,
+#custom-low-ports,
+#custom-ip-internal,
+#custom-ip-external {
     background-color: #111827;
-    border-radius: 14px;
-    padding: 6px;  /* Adjusted padding */
+    border-radius: 20px;
+    padding: 10px;  /* Adjusted padding */
 }
 
 #custom-screenshot_t {
