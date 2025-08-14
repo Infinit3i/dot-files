@@ -1,0 +1,8 @@
+- waybar
+- hyprland wiki
+    - ecosystem
+    - hyperlock
+    - hyprpicker
+- rofi-wayland
+- neovim
+- ghosterly
