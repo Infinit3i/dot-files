@@ -100,30 +100,25 @@ window#waybar.hidden {
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
 #custom-weather.default,
+#custom-download_speed,
 #custom-low-ports,
 #custom-ip-internal,
 #custom-ip-external {
     background-color: #111827;
     border-radius: 20px;
-    padding: 10px;  /* Adjusted padding */
+    padding: 8px;  /* Adjusted padding */
 }
 
 #custom-screenshot_t {
     background-color: #111827;
-    border-radius: 14px;
-    padding: 6px;
+    border-radius: 20px;
+    padding: 12px;
 }
 
 #custom-spotify {
     background-color: #111827;
     border-radius: 14px;
     padding: 3px 12px;
-}
-
-#tray {
-    background-color: #111827;
-    border-radius: 14px;
-    padding: 6px;  /* Adjusted padding */
 }
 
 #cpu {
@@ -210,15 +205,6 @@ window#waybar.hidden {
     color: #c8d2e0;
 }
 
-#battery {
-    color: #c0caf5;
-}
-
-#battery.charging,
-#battery.full,
-#battery.plugged {
-    color: #26a65b;
-}
 
 @keyframes blink {
     to {

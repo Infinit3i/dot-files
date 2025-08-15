@@ -2,19 +2,13 @@
     // -------------------------------------------------------------------------
     // Global configuration
     // -------------------------------------------------------------------------
-
     "layer": "top",
-
     "position": "top",
-
     //"height": 20,
-
     "margin-left": 15,
     "margin-bottom": 0,
     "margin-right": 15,
-
     "spacing": 5, // Gaps between modules (4px)
-
     "modules-left": [
         //"custom/rofi",
         "hyprland/workspaces",
@@ -31,9 +25,10 @@
         //"custom/gammastep"
     ],
     "modules-right": [
-	"custom-low-ports",
-    	"custom/ip-internal",
-    	"custom/ip-external",
+        "custom-low-ports",
+        "custom/download_speed",
+        "custom/ip-internal",
+        "custom/ip-external",
         "backlight",
         "custom/storage",
         "memory",
@@ -41,31 +36,32 @@
         //"pulseaudio",
         "wireplumber",
         "custom/screenshot_t",
-        "tray",
         "custom/power"
     ],
-
-
     // -------------------------------------------------------------------------
     // Modules
     // -------------------------------------------------------------------------
-
     "custom-low-ports": {
- 	   "format": "Ports: {}",
-   	 "interval": 5,
-    	"exec": "ss -t4n state established '( sport < 30000 )' | awk 'NR>1 {split($4,l,\":\"); split($5,r,\":\"); print r[2]}' | paste -sd ',' -"
+        "format": "Ports: {}",
+        "interval": 5,
+        "exec": "ss -t4n state established '( sport < 30000 )' | awk 'NR>1 {split($4,l,\":\"); split($5,r,\":\"); print r[2]}' | paste -sd ',' -"
     },
     "custom/ip-internal": {
-  	 "format": "LAN: {}",
-   	 "interval": 30,
-	 "exec": "ip -4 addr show enp0s31f6 | grep 'inet ' | awk '{print $2}' | cut -d/ -f1"
+        "format": "LAN: {}",
+        "interval": 30,
+        "exec": "ip -4 addr show enp0s31f6 | grep 'inet ' | awk '{print $2}' | cut -d/ -f1"
     },
     "custom/ip-external": {
-   	 "format": "WAN: {}",
-   	 "interval": 600,
-    	"exec": "curl -4 -s ifconfig.me"
+        "format": "WAN: {}",
+        "interval": 600,
+        "exec": "curl -4 -s ifconfig.me"
     },
-
+    "custom/download_speed": {
+        "format": "↓ {}",
+        "interval": 1,
+        "exec": "IFACE=enp0s31f6; RX1=$(cat /sys/class/net/$IFACE/statistics/rx_bytes); sleep 1; RX2=$(cat /sys/class/net/$IFACE/statistics/rx_bytes); BPS=$(( (RX2 - RX1) * 8 )); if [ $BPS -lt 1000 ]; then printf \"%d bps\" $BPS; elif [ $BPS -lt 1000000 ]; then awk \"BEGIN {printf \\\"%.1f Kbps\\\", $BPS/1000}\"; else awk \"BEGIN {printf \\\"%.1f Mbps\\\", $BPS/1000000}\"; fi",
+        "on-click": "xdg-open 'https://www.speedtest.net/'"
+    },
     "custom/sp1": {
         "format": " | ",
         "tooltip": false
@@ -74,7 +70,6 @@
         "format": " |",
         "tooltip": false
     },
-
     "custom/rofi": {
         "format": "",
         "tooltip": false,
@@ -82,12 +77,11 @@
         "on-click": "wofi --show run",
         "on-click-middle": "pkill -9 wofi"
     },
-    "custom/screenshot_t":{
-        "format":" ",
+    "custom/screenshot_t": {
+        "format": " ",
         "on-click": "~/.config/hypr/scripts/screenshot_full",
-        "on-click-right":"~/.config/hypr/scripts/screenshot_area"
+        "on-click-right": "~/.config/hypr/scripts/screenshot_area"
     },
-
     "clock#1": {
         "format": " {:%a}",
         "tooltip": false,
@@ -103,7 +97,6 @@
         "tooltip": false,
         "on-click": "gsimplecal"
     },
-
     "temperature": {
         // "thermal-zone": 1,
         "interval": 4,
@@ -112,12 +105,15 @@
         // "format-critical": " {temperatureC}°C",
         "format-critical": "  {temperatureC}°C",
         "format": "{icon}  {temperatureC}°C",
-        "format-icons": ["", "", ""],
+        "format-icons": [
+            "",
+            "",
+            ""
+        ],
         "max-length": 7,
         "min-length": 7,
         "on-click": "xsensors"
     },
-
     "memory": {
         "interval": 30,
         "format": "  {used:0.2f} / {total:0.0f} GB",
@@ -144,14 +140,16 @@
         "interval": 60,
         "exec": "~/.config/waybar/modules/storage.sh"
     },
-
     "backlight": {
         "device": "intel_backlight",
         "format": "{icon} {percent}%",
         "format-alt": "{percent}% {icon}",
         "format-alt-click": "click-right",
         //"format-icons": ["", ""],
-        "format-icons": ["", ""],
+        "format-icons": [
+            "",
+            ""
+        ],
         "on-scroll-down": "brightnessctl s 5%-",
         "on-scroll-up": "brightnessctl s +5%"
     },
@@ -176,24 +174,22 @@
     },
     "custom/pacman": {
         "format": "<big>􏆲</big>  {}",
-        "interval": 3600,                     // every hour
-        "exec": "checkupdates | wc -l",       // # of updates
-        "exec-if": "exit 0",                  // always run; consider advanced run conditions
+        "interval": 3600, // every hour
+        "exec": "checkupdates | wc -l", // # of updates
+        "exec-if": "exit 0", // always run; consider advanced run conditions
         "on-click": "alacritty -e 'paru'; pkill -SIGRTMIN+8 waybar", // update system
         "signal": 8,
         "max-length": 5,
         "min-length": 3
     },
-
-"custom/spotify": {
-    "exec": "~/.config/waybar/mediaplayer.py --player spotify",
-    "format": "{}  ",
-    "return-type": "json",
-    "on-click": "pgrep spotify >/dev/null && playerctl --player=spotify play-pause || spotify &",
-    "on-scroll-up": "playerctl next",
-    "on-scroll-down": "playerctl previous"
-},
-
+    "custom/spotify": {
+        "exec": "~/.config/waybar/mediaplayer.py --player spotify",
+        "format": "{}  ",
+        "return-type": "json",
+        "on-click": "pgrep spotify >/dev/null && playerctl --player=spotify play-pause || spotify &",
+        "on-scroll-up": "playerctl next",
+        "on-scroll-down": "playerctl previous"
+    },
     "custom/media": {
         "format": "{0} {1}",
         "return-type": "json",
@@ -206,50 +202,45 @@
         //"exec": "~/.config/waybar/mediaplayer.py" // Script in resources folder
         // "exec": "~/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     },
-
     "custom/power": {
         "format": " 󰐥 ",
         "tooltip": false,
         "on-click": "wlogout"
     },
-
     "clock": {
         "format": "  {:%H:%M   %e %b}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "today-format": "<b>{}</b>"
     },
-
     "clock#date": {
         "format": "󰥔  {:%H:%M \n %e %b}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "today-format": "<b>{}</b>"
     },
-
     "custom/gammastep": {
-      "interval": 5,
-      "return-type": "json",
-      "exec": {
-        "pre": "if unit_status=\"$(systemctl --user is-active gammastep)\"; then\nstatus=\"$unit_status ($(journalctl --user -u gammastep.service -g 'Period: ' | tail -1 | cut -d ':' -f6 | xargs))\"\nelse\nstatus=\"$unit_status\"\nfi",
-        "alt": "${status:-inactive}",
-        "tooltip": "Gammastep is $status",
-      },
-      "format": "{icon}",
-      "format-icons": {
-        "activating": "󰁪 ",
-        "deactivating": "󰁪 ",
-        "inactive": "? ",
-        "active (Night)": " ",
-        "active (Nighttime)": " ",
-        "active (Transition (Night)": " ",
-        "active (Transition (Nighttime)": " ",
-        "active (Day)": " ",
-        "active (Daytime)": " ",
-        "active (Transition (Day)": " ",
-        "active (Transition (Daytime)": " ",
-      },
-      "on-click": "systemctl --user is-active gammastep && systemctl --user stop gammastep || systemctl --user start gammastep",
+        "interval": 5,
+        "return-type": "json",
+        "exec": {
+            "pre": "if unit_status=\"$(systemctl --user is-active gammastep)\"; then\nstatus=\"$unit_status ($(journalctl --user -u gammastep.service -g 'Period: ' | tail -1 | cut -d ':' -f6 | xargs))\"\nelse\nstatus=\"$unit_status\"\nfi",
+            "alt": "${status:-inactive}",
+            "tooltip": "Gammastep is $status",
+        },
+        "format": "{icon}",
+        "format-icons": {
+            "activating": "󰁪 ",
+            "deactivating": "󰁪 ",
+            "inactive": "? ",
+            "active (Night)": " ",
+            "active (Nighttime)": " ",
+            "active (Transition (Night)": " ",
+            "active (Transition (Nighttime)": " ",
+            "active (Day)": " ",
+            "active (Daytime)": " ",
+            "active (Transition (Day)": " ",
+            "active (Transition (Daytime)": " ",
+        },
+        "on-click": "systemctl --user is-active gammastep && systemctl --user stop gammastep || systemctl --user start gammastep",
     },
-
     "cpu": {
         "interval": 1,
         //"format": " {}%", // Icon: microchip
@@ -257,7 +248,6 @@
         "max-length": 13,
         "min-length": 13
     },
-
     "mpd": {
         "max-length": 25,
         "format": "<span foreground='#bb9af7'></span> {title}",
@@ -272,7 +262,6 @@
         "smooth-scrolling-threshold": 5,
         "tooltip-format": "{title} - {artist} ({elapsedTime:%M:%S}/{totalTime:%H:%M:%S})"
     },
-
     "custom/title": {
         "format": "{}",
         "interval": 0,
@@ -280,22 +269,18 @@
         //"max-length": 35,
         "tooltip": false
     },
-
     "custom/title#name": {
         "format": "{}",
         "interval": 0,
         "return-type": "json",
-
         "max-length": 35,
         "exec": "$HOME/.scripts/title"
     },
-
     /*"custom/keyboard": {
         "format": " {}",
         "interval": 1,
         "exec": "$HOME/.config/waybar/get_kbdlayout.sh"
     },*/
-
     "hyprland/workspaces": {
         "all-outputs": true,
         "format": "{name}",
@@ -316,12 +301,10 @@
         "sort-by-number": true,
         "active-only": false,
     },
-
     "hyprland/window": {
         "max-length": 100,
         "separate-outputs": true
     },
-
     "pulseaudio": {
         "scroll-step": 3, // %, can be a float
         "format": "{icon} {volume}% {format_source}",
@@ -339,12 +322,15 @@
             "phone": "",
             "portable": "",
             "car": "",
-            "default": ["", "", ""]
+            "default": [
+                "",
+                "",
+                ""
+            ]
         },
         "on-click": "pavucontrol",
         "on-click-right": "amixer sset Master toggle"
     },
-
     "wireplumber": {
         "on-click": "pavucontrol",
         "on-click-right": "amixer sset Master toggle 1>/dev/null",
@@ -364,10 +350,13 @@
             "phone": " ",
             "portable": " ",
             "car": " ",
-            "default": [" ", " ", " "]
+            "default": [
+                " ",
+                " ",
+                " "
+            ]
         },
     },
-
     "tray": {
         "icon-size": 15,
         "spacing": 5
