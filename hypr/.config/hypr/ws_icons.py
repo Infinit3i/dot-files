@@ -3,13 +3,13 @@ import json, subprocess, time, shutil, sys, os
 
 HYPRCTL = shutil.which("hyprctl") or "/usr/bin/hyprctl"
 EMPTY_ICON = ""
-HIDE = "\u200B"      # zero-width space to keep names unique
+HIDE = "\u200B"      # zero-width space
 POLL = 0.5
 LOG = "/tmp/ws_icons.log"
 
 ICON_MAP = [
     (["alacritty","kitty","wezterm","foot","terminal"], ""),
-    (["firefox","brave","chromium","google-chrome","vivaldi","zen"], ""),  # ← added zen
+    (["firefox","brave","chromium","google-chrome","vivaldi","zen"], ""),
     (["code","code-oss","vscode","vscodium","jetbrains","idea","pycharm","clion"], ""),
     (["discord","element","slack","telegram","signal"], ""),
     (["spotify"], ""),
@@ -19,15 +19,13 @@ ICON_MAP = [
     (["libreoffice","writer","calc","impress"], ""),
     (["gimp","krita","inkscape"], ""),
     (["mpv","vlc"], ""),
-    (["virt-manager","qemu","virtualbox"], ""),
-    (["docker","podman","lazydocker"], ""),
-    (["github-desktop","gitkraken","git"], ""),
 ]
+
+SUB = str.maketrans("0123456789", "₀₁₂₃₄₅₆₇₈₉")
 
 def log(msg):
     try:
-        with open(LOG, "a", encoding="utf-8") as f:
-            f.write(msg + "\n")
+        with open(LOG, "a", encoding="utf-8") as f: f.write(msg + "\n")
     except Exception:
         pass
 
@@ -44,8 +42,7 @@ def icon_for(app):
 def best_client(clients, wid):
     best, score_best = None, (-1, -1)
     for c in clients:
-        ws = c.get("workspace", {})
-        if ws.get("id") != wid:
+        if c.get("workspace", {}).get("id") != wid:
             continue
         score = (1 if c.get("fullscreen", False) else 0, c.get("focusHistoryID") or 0)
         if score > score_best:
@@ -53,7 +50,6 @@ def best_client(clients, wid):
     return best
 
 def rename_workspace(wid, newname):
-    # Your hyprctl expects: renameworkspace <numeric_id> <newname>
     r = subprocess.run(
         [HYPRCTL, "dispatch", "renameworkspace", str(wid), newname],
         text=True, capture_output=True
@@ -82,15 +78,16 @@ def main():
             c = best_client(clients, wid)
             icon = icon_for(c.get("class") or c.get("initialClass") or c.get("title") or "") if c else EMPTY_ICON
 
-            newname = f"{icon}{HIDE * wid}"  # icon-only; uniqueness via ZWSP
+            # icon + newline + small (subscript) number, then ZWSPs for uniqueness
+            subnum = str(wid).translate(SUB)  # e.g., 10 -> ₁₀
+            newname = f"{icon}{subnum}{HIDE * wid}"
+
             if w.get("name") == newname or last.get(wid) == newname:
                 continue
 
             if rename_workspace(wid, newname):
                 last[wid] = newname
                 log(f"renamed {wid} -> {newname.encode('unicode_escape').decode()}")
-            else:
-                log(f"rename failed for {wid}")
 
         time.sleep(POLL)
 
