@@ -1,4 +1,2 @@
-- hyprland
-    - hyprpicker
-- neovim
+- [hypr Ecosystem](https://wiki.hypr.land/Hypr-Ecosystem/)
 - alacritty
