@@ -1,7 +1,4 @@
-- rofi
-
-- hyprland wiki
-    - ecosystem
+- hyprland
     - hyprpicker
-- rofi-wayland
 - neovim
+- alacritty
