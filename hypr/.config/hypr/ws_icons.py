@@ -3,7 +3,7 @@ import json, subprocess, time, shutil, sys, os
 
 HYPRCTL = shutil.which("hyprctl") or "/usr/bin/hyprctl"
 EMPTY_ICON = ""
-HIDE = "\u200B"      # zero-width space
+HIDE = "\u200B"
 POLL = 0.5
 LOG = "/tmp/ws_icons.log"
 
@@ -15,10 +15,18 @@ ICON_MAP = [
     (["spotify"], ""),
     (["steam"], ""),
     (["thunar","nautilus","dolphin","nemo","pcmanfm"], ""),
-    (["obsidian","notion","notion-app-enhanced"], ""),
+    (["obsidian","notion","notion-app-enhanced"], ""),
     (["libreoffice","writer","calc","impress"], ""),
     (["gimp","krita","inkscape"], ""),
     (["mpv","vlc"], ""),
+]
+
+COLOR_MAP = [
+    (["spotify"], "#1DB954"),                       # green
+    (["code","code-oss","vscode","vscodium"], "#3B82F6"),  # blue (Code)
+    (["obsidian","notion","notion-app-enhanced"], "#7c4dff"),  # purple (Obsidian)
+    (["discord"], "#8b5cf6"),                       # purple (Discord)
+    (["firefox","zen","brave"], "#ff7139"),         # orange
 ]
 
 SUB = str.maketrans("0123456789", "₀₁₂₃₄₅₆₇₈₉")
@@ -32,12 +40,12 @@ def log(msg):
 def jrun(args):
     return json.loads(subprocess.check_output([HYPRCTL, "-j", *args], text=True))
 
-def icon_for(app):
+def pick_from_map(app, table, default=None):
     a = (app or "").lower()
-    for keys, ic in ICON_MAP:
+    for keys, val in table:
         if any(k in a for k in keys):
-            return ic
-    return ""
+            return val
+    return default
 
 def best_client(clients, wid):
     best, score_best = None, (-1, -1)
@@ -50,10 +58,8 @@ def best_client(clients, wid):
     return best
 
 def rename_workspace(wid, newname):
-    r = subprocess.run(
-        [HYPRCTL, "dispatch", "renameworkspace", str(wid), newname],
-        text=True, capture_output=True
-    )
+    r = subprocess.run([HYPRCTL, "dispatch", "renameworkspace", str(wid), newname],
+                       text=True, capture_output=True)
     if r.returncode != 0:
         log(f"rename fail id={wid} rc={r.returncode} stderr={r.stderr.strip()}")
         return False
@@ -76,15 +82,19 @@ def main():
                 continue
 
             c = best_client(clients, wid)
-            icon = icon_for(c.get("class") or c.get("initialClass") or c.get("title") or "") if c else EMPTY_ICON
+            if c:
+                app = c.get("class") or c.get("initialClass") or c.get("title") or ""
+                icon = pick_from_map(app, ICON_MAP, "")
+                color = pick_from_map(app, COLOR_MAP, None)
+            else:
+                icon, color = EMPTY_ICON, None
 
-            # icon + newline + small (subscript) number, then ZWSPs for uniqueness
-            subnum = str(wid).translate(SUB)  # e.g., 10 -> ₁₀
-            newname = f"{icon}{subnum}{HIDE * wid}"
+            subnum = str(wid).translate(SUB)
+            icon_part = f"<span foreground='{color}'>{icon}</span>" if color else icon
+            newname = f"{icon_part}{subnum}{HIDE * wid}"
 
             if w.get("name") == newname or last.get(wid) == newname:
                 continue
-
             if rename_workspace(wid, newname):
                 last[wid] = newname
                 log(f"renamed {wid} -> {newname.encode('unicode_escape').decode()}")
@@ -92,5 +102,5 @@ def main():
         time.sleep(POLL)
 
 if __name__ == "__main__":
-    os.environ.setdefault("LANG","C.UTF-8")
+    os.environ.setdefault("LANG", "C.UTF-8")
     sys.exit(main())
