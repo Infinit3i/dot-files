@@ -1,46 +1,52 @@
+/* ~/.config/wofi/style.css */
 * {
-    font-family: "Hack", monospace;
+  font-family: "Hack", JetBrains Mono, monospace;
+  font-size: 12pt;
 }
 
 window {
-    background-color: #007d6f; /* cachydgreen */
-}
-
-#input {
-    margin: 5px;
-    border-radius: 0px;
-    border: none;
-    background-color: #111826; /* cachydgreen */
-    color: #ffffffff; /* cachywhite */
-}
-
-#inner-box {
-    background-color: #111826; /* cachydblue */
+  background-color: rgba(33, 20, 23, 0.96);   /* #211417 with alpha */
+  border: 1px solid #645759;                  /* subtle frame */
+  border-radius: 12px;
 }
 
 #outer-box {
-    margin: 2px;
-    padding: 10px;
-    background-color: #111826; /* cachydblue */
+  margin: 8px;
+  padding: 10px;
+  background: transparent;
 }
 
-#scroll {
-    margin: 5px;
+#input {
+  margin: 0 0 8px 0;
+  padding: 8px 12px;
+  border: 1px solid #645759;
+  border-radius: 8px;
+  background: rgba(100, 87, 89, 0.12);       /* faint field bg */
+  color: #ede9ea;
 }
 
-#text {
-    padding: 4px;
-    color: #ffffffff; /* cachywhite */
+#prompt { color: #a79b9d; }
+
+#inner-box { background: transparent; }
+#scroll    { margin: 4px 0; }
+
+#entry {
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: transparent;
+  color: #ede9ea;
 }
 
-#entry:nth-child(even){
-    background-color: #182545; /* cachymblue */
+#entry:nth-child(even) {
+  background: rgba(100, 87, 89, 0.08);       /* subtle zebra */
 }
 
 #entry:selected {
-    background-color: #00aa84; /* cachymgreen */
+  background: #ab4b4e;                       /* accent */
+  color: #211417;                             /* contrast on accent */
 }
 
-#text:selected {
-    background: transparent;
-}
+#text { color: inherit; }
+#text:selected { background: transparent; }
+
+#img  { margin-right: 10px; min-width: 22px; min-height: 22px; }

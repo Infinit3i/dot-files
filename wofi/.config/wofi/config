@@ -2,5 +2,9 @@ allow_images=true
 hide_scroll=true
 no_actions=false
 term=alacritty
-mode=drun
---show
+
+show=drun
+location=center
+width=25%
+height=25%
+insensitive=true
