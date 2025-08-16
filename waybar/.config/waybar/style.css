@@ -27,6 +27,13 @@
     margin: 0px 0px;
 }
 
+/* Force icon-capable font on workspace buttons */
+#workspaces, #workspaces * {
+  font-family: "Symbols Nerd Font", "MesloLGMDZ Nerd Font", "FiraCode Nerd Font", "Font Awesome 7 Free", "Font Awesome 7 Brands";
+  letter-spacing: 0;
+}
+
+
 window#waybar.hidden {
   opacity: 0.2;
 }
