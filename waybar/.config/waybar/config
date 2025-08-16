@@ -65,7 +65,7 @@
     },
     "custom/download_speed": {
         "format": "↓ {}",
-        "interval": 1,
+        "interval": 5,
         "exec": "IFACE=enp0s31f6; RX1=$(cat /sys/class/net/$IFACE/statistics/rx_bytes); sleep 1; RX2=$(cat /sys/class/net/$IFACE/statistics/rx_bytes); BPS=$(( (RX2 - RX1) * 8 )); if [ $BPS -lt 1000 ]; then printf \"%d bps\" $BPS; elif [ $BPS -lt 1000000 ]; then awk \"BEGIN {printf \\\"%.1f Kbps\\\", $BPS/1000}\"; else awk \"BEGIN {printf \\\"%.1f Mbps\\\", $BPS/1000000}\"; fi",
         "on-click": "xdg-open 'https://www.speedtest.net/'"
     },
