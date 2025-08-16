@@ -53,3 +53,14 @@ border-color=#bf616a
 [app-name="Discord"]
 background-color=#4c566add
 border-color=#7289da
+
+[app-name="Spotify"]
+background-color=#1db95422
+border-color=#1db954
+text-color=#d8dee9
+max-icon-size=64
+# Drop the app name and just show track info:
+format=<b>%s</b>\n%b
+default-timeout=3500
+group-by=summary
+
