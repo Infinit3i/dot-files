@@ -1,3 +1,3 @@
 - [hypr Ecosystem](https://wiki.hypr.land/Hypr-Ecosystem/)
 - mako
-- better icons for desktops waybar workspaces
+- cpu, gpu, download speed, memory usage to be a graphs
