@@ -1,13 +1,15 @@
 [env]
 TERM = "xterm-256color"
-WINIT_X11_SCALE_FACTOR = "1"
+WINIT_UNIX_BACKEND = "wayland"
 
 [window]
 dynamic_padding = true
 decorations = "full"
 title = "Alacritty@CachyOS"
-opacity = 0.8
 decorations_theme_variant = "Dark"
+opacity = 0.85
+padding = { x = 10, y = 8 }
+dynamic_title = true
 
 [window.dimensions]
 columns = 100
@@ -18,7 +20,7 @@ instance = "Alacritty"
 general = "Alacritty"
 
 [scrolling]
-history = 10000
+history = 12000
 multiplier = 3
 
 [colors]
@@ -50,22 +52,11 @@ white = "0xECEFF4"
 
 [font]
 size = 12
-
-[font.normal]
-family = "monospace"
-style = "Regular"
-
-[font.bold]
-family = "monospace"
-style = "Bold"
-
-[font.italic]
-family = "monospace"
-style = "Italic"
-
-[font.bold_italic]
-family = "monospace"
-style = "Bold Italic"
+normal = { family = "FiraCode Nerd Font Mono", style = "Regular" }
+bold   = { family = "FiraCode Nerd Font Mono", style = "Bold" }
+italic = { family = "FiraCode Nerd Font Mono", style = "Italic" }
+bold_italic = { family = "FiraCode Nerd Font Mono", style = "Bold Italic" }
+offset = { x = 0, y = 1 }
 
 [selection]
 semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
@@ -162,3 +153,6 @@ action = "ResetFontSize"
 [general]
 live_config_reload = true
 working_directory = "None"
+
+[hints]
+alphabet = "asdfghjkl"
