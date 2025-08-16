@@ -111,11 +111,16 @@ window#waybar.hidden {
 #custom-pkgs,
 #custom-low-ports,
 #custom-ip-internal,
+#custom-gpu,
 #custom-ip-external {
     background-color: #111827;
     border-radius: 20px;
     padding: 8px;  /* Adjusted padding */
 }
+
+#custom-pkgs { color: lightblue; }
+
+#custom-gpu.nvidia { color: #47d111; }
 
 #custom-screenshot_t {
     background-color: #111827;
