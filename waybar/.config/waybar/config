@@ -5,9 +5,9 @@
     "layer": "top",
     "position": "top",
     //"height": 20,
-    "margin-left": 15,
+    "margin-left": 10,
     "margin-bottom": 0,
-    "margin-right": 15,
+    "margin-right": 10,
     "spacing": 5, // Gaps between modules (4px)
     "modules-left": [
         //"custom/rofi",

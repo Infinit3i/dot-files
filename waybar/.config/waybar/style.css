@@ -43,15 +43,15 @@ window#waybar.hidden {
 
 #workspaces button.active {
     color: @foreground;
-    background: #025939;
+    background: black
 }
 
 #workspaces button:hover {
-    background: #333333;
+    background: purple;
 }
 
 #workspaces button.urgent {
-    background-color: #eb4d4b;
+    background-color: red;
 }
 
 #workspaces {
@@ -261,11 +261,11 @@ label:focus {
 }
 
 #temperature {
-    background-color: #f0932b;
+    background-color: #ffb25b;
 }
 
 #temperature.critical {
-    background-color: #eb4d4b;
+    background-color: #ff1e1a;
 }
 
 #tray > .passive {
