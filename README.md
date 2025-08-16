@@ -1,3 +1,4 @@
 - [hypr Ecosystem](https://wiki.hypr.land/Hypr-Ecosystem/)
 - mako
 - cpu, gpu, download speed, memory usage to be a graphs
+- show fps on waybar

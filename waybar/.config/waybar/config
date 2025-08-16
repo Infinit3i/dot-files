@@ -25,6 +25,7 @@
         //"custom/gammastep"
     ],
     "modules-right": [
+        "custom/pkgs",
         "custom-low-ports",
         "custom/download_speed",
         "custom/ip-internal",
@@ -45,6 +46,12 @@
         "format": "Ports: {}",
         "interval": 5,
         "exec": "ss -t4n state established '( sport < 30000 )' | awk 'NR>1 {split($4,l,\":\"); split($5,r,\":\"); print r[2]}' | paste -sd ',' -"
+    },
+    "custom/pkgs": {
+        "format": "󰏖 {}",
+        "interval": 3600,
+        "exec": "T=$(pacman -Qq | wc -l); A=$(pacman -Qmq | wc -l); N=$((T-A)); echo \"${T} (AUR:${A} | Repo:${N})\"",
+        "on-click": "alacritty -e sh -c 'pacman -Q | less'"
     },
     "custom/ip-internal": {
         "format": "LAN: {}",
@@ -288,7 +295,7 @@
         "on-scroll-down": "hyprctl dispatch workspace e-1 1>/dev/null",
         "sort-by-number": true,
         "active-only": false,
-        },
+    },
     "hyprland/window": {
         "max-length": 100,
         "separate-outputs": true
