@@ -1,11 +1,55 @@
-max-visible=10
-layer=top
+# ~/.config/mako/config
+
+# ===== Global look =====
 font=Sarasa UI SC 10
+width=380
+height=140
+padding=10
+margin=20
+outer-margin=20,20,0,20
 background-color=#4c566add
 text-color=#d8dee9
 border-color=#434c5e
+border-size=2
 border-radius=7
-max-icon-size=48
+icon-location=left
+icons=1
+max-icon-size=100
+text-alignment=left
+progress-color=source #88c0d0cc
 default-timeout=10000
-anchor=top-right
-margin=20
+max-visible=10
+anchor=top-center
+layer=top
+output=DP-1
+
+# ===== Format (Pango markup is enabled by default) =====
+# %a=app name, %s=summary, %b=body
+format=<b>%a</b> — %s\n<span size="xx-small"> </span>\n%b
+
+# ===== Click actions (bindings) =====
+on-button-left=invoke-default-action
+on-button-right=dismiss
+# Middle-click: show app-provided actions via dmenu/wofi:
+on-button-middle=exec makoctl menu -n "$id" wofi -p 'Notification action:'
+# Play a sound on new notifications (optional):
+# on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/message.oga
+
+# ===== Per-urgency theming =====
+[urgency=low]
+background-color=#2e3440e6
+border-color=#3b4252
+
+[urgency=normal]
+background-color=#3b4252e6
+border-color=#434c5e
+
+[urgency=critical]
+background-color=#bf616aff
+text-color=#eceff4
+border-color=#bf616a
+
+# ===== Per-app example =====
+[app-name="Discord"]
+background-color=#4c566add
+border-color=#7289da
