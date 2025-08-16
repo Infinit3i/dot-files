@@ -1,2 +1,1 @@
 - [hypr Ecosystem](https://wiki.hypr.land/Hypr-Ecosystem/)
-- alacritty
