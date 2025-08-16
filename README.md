@@ -1,1 +1,3 @@
 - [hypr Ecosystem](https://wiki.hypr.land/Hypr-Ecosystem/)
+- top left of waybar to be icons of what are on them
+- look at more unix porn
