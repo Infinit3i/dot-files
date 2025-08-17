@@ -15,5 +15,5 @@ while :; do
   else
     print_json "N/A" "nvidia-smi not found/ready" "nvidia"
   fi
-  sleep 3
+  sleep 5
 done
