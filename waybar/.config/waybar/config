@@ -22,6 +22,7 @@
     "custom/gpu",
     "memory",
     "custom/mako",
+    "pulseaudio",
     "custom/power"
   ],
   "custom/spotify": {
@@ -36,7 +37,8 @@
   },
   "clock": {
     "format": "{:%H:%M}",
-    "tooltip-format": "{:%A, %B %d, %Y}",
+    "tooltip": true,
+    "tooltip-format": "<span size='10pt'><tt>{calendar}</tt></span>\n{:%A, %B %d, %Y}",
     "calendar": {
       "mode": "month",
       "on-scroll": 1
@@ -50,7 +52,7 @@
   },
   "custom/weather": {
     "format": "{}",
-    "interval": 1800,
+    "interval": 120,
     "exec": "curl -s 'https://wttr.in/?format=1&u'",
     "exec-if": "ping -c1 -W1 wttr.in >/dev/null 2>&1",
     "on-click": "xdg-open 'https://wttr.in/'"
@@ -102,6 +104,20 @@
     "exec": "~/.config/waybar/scripts/mako_dnd.sh",
     "interval": 1,
     "on-click": "makoctl mode -t do-not-disturb"
+  },
+  "pulseaudio": {
+    "format": "{volume}% {icon}",
+    "format-muted": " muted",
+    "format-icons": {
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "scroll-step": 2,
+    "on-click": "pavucontrol",
+    "on-click-right": "~/.config/waybar/scripts/audio_sink_menu.sh"
   },
   "custom/power": {
     "format": "⏻",
