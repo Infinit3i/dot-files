@@ -1,9 +1,12 @@
 {
   "layer": "top",
   "position": "top",
+  "margin-left": 0,
+  "margin-right": 0,
   "modules-left": [
     "custom/wofi",
     "hyprland/workspaces",
+    "custom/pkgs",
     "custom/spotify"
   ],
   "modules-center": [
@@ -11,12 +14,9 @@
     "custom/weather"
   ],
   "modules-right": [
-    "temperature",
-    "custom/pkgs",
-    "custom/low_ports",
-    "custom/download_speed",
-    "custom/internal_ip",
     "custom/external_ip",
+    "custom/internal_ip",
+    "custom/download_speed",
     "custom/est",
     "cpu",
     "custom/gpu",
@@ -55,46 +55,30 @@
     "exec-if": "ping -c1 -W1 wttr.in >/dev/null 2>&1",
     "on-click": "xdg-open 'https://wttr.in/'"
   },
-  "temperature": {
-    "interval": 4,
-    "critical-threshold": 80,
-    "format": "{icon} {temperatureC}°C",
-    "format-critical": " {temperatureC}°C",
-    "format-icons": [
-      "",
-      "",
-      ""
-    ]
-  },
   "hyprland/workspaces": {
     "format": "{id}",
     "all-outputs": true
   },
   "custom/download_speed": {
-    "interval": 2,
+    "interval": 5,
     "exec": "bash -lc 'IF=wlan0; RX1=$(cat /sys/class/net/$IF/statistics/rx_bytes); sleep 1; RX2=$(cat /sys/class/net/$IF/statistics/rx_bytes); echo $(( (RX2-RX1)/1024 ))\" KB/s\"'",
     "format": "↓ {}",
     "on-click": "kitty sh -lc 'cmd=\"IF=wlan0; RX1=\\$(cat /sys/class/net/\\$IF/statistics/rx_bytes); sleep 1; RX2=\\$(cat /sys/class/net/\\$IF/statistics/rx_bytes); echo \\$(( (RX2-RX1)/1024 )) KB/s\"; echo \"$cmd\"; echo; bash -lc \"$cmd\"; echo; read -n1 -s -r -p \"Press any key to close\"'"
   },
-  "custom/low_ports": {
-    "format": "Ports: {}",
-    "interval": 5,
-    "exec": "bash -lc \"printf '%s' \\\"\\$(ss -t4n state established '( sport < 30000 )' | awk 'NR>1 {split(\\$4,l,\\\":\\\"); split(\\$5,r,\\\":\\\"); print r[2]}' | paste -sd ',' -)\\\"\""
-  },
   "custom/internal_ip": {
-    "format": "INT {}",
+    "format": "{}",
     "exec": "~/.config/waybar/scripts/internal_ip.sh",
-    "interval": 60
+    "interval": 360
   },
   "custom/external_ip": {
-    "format": "EXT {}",
+    "format": "{}",
     "exec": "~/.config/waybar/scripts/external_ip.sh",
-    "interval": 60
+    "interval": 360
   },
   "custom/pkgs": {
     "format": "PKG {}",
     "exec": "~/.config/waybar/scripts/pkg_count.sh",
-    "interval": 3600
+    "interval": 360
   },
   "custom/est": {
     "interval": 5,
