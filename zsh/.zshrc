@@ -1,4 +1,6 @@
 export MANPAGER='nvim +Man!'
+export GEM_HOME="$HOME/.local/share/gem/ruby/3.4.0"
+export PATH="$GEM_HOME/bin:$PATH"
 
 alias lw='librewolf'
 alias vim='nvim'
