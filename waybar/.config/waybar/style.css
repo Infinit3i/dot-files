@@ -24,9 +24,10 @@ window#waybar {
 #custom-weather,
 #custom-spotify,
 #custom-download_speed,
-#custom-low_ports {
-  padding: 2px 12px;
-  margin: 3px 2px;
+#custom-low_ports,
+#pulseaudio {
+  padding: 1px 6px;
+  margin: 1px 1px;
   border: 0.5px solid #333;
   border-radius: 6px;
   background: rgba(20,20,20,0.85);
@@ -92,4 +93,5 @@ window#waybar {
 #custom-power {
   color: #ff5555;
 }
+
 
