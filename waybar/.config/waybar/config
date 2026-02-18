@@ -7,11 +7,11 @@
     "custom/wofi",
     "hyprland/workspaces",
     "custom/pkgs",
-    "custom/spotify"
+    "custom/spotify",
+    "custom/weather"
   ],
   "modules-center": [
-    "clock",
-    "custom/weather"
+    "clock"
   ],
   "modules-right": [
     "custom/external_ip",
