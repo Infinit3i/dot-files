@@ -1,372 +1,127 @@
 {
-    // -------------------------------------------------------------------------
-    // Global configuration
-    // -------------------------------------------------------------------------
-    "layer": "top",
-    "position": "top",
-    //"height": 20,
-    "margin-left": 10,
-    "margin-bottom": 0,
-    "margin-right": 10,
-    "spacing": 5, // Gaps between modules (4px)
-    "modules-left": [
-        //"custom/rofi",
-        "hyprland/workspaces",
-        //"hyprland/submap",
-        "temperature",
-        //"idle_inhibitor",
-        //"mpd"
-        "custom/spotify"
-    ],
-    "modules-center": [
-        //"hyprland/window"
-        "clock#date",
-        "custom/weather"
-        //"custom/gammastep"
-    ],
-    "modules-right": [
-        "custom/pkgs",
-        "custom-low-ports",
-        "custom/download_speed",
-        "custom/ip-internal",
-        "custom/ip-external",
-        "backlight",
-        "custom/storage",
-        "memory",
-        "cpu",
-        "custom/gpu",
-        //"pulseaudio",
-        "wireplumber",
-        "custom/screenshot_t",
-        "custom/power"
-    ],
-    // -------------------------------------------------------------------------
-    // Modules
-    // -------------------------------------------------------------------------
-    "custom-low-ports": {
-        "format": "Ports: {}",
-        "interval": 5,
-        "exec": "ss -t4n state established '( sport < 30000 )' | awk 'NR>1 {split($4,l,\":\"); split($5,r,\":\"); print r[2]}' | paste -sd ',' -"
-    },
-    "custom/pkgs": {
-        "format": "󰏖 {}",
-        "interval": 3600,
-        "exec": "T=$(pacman -Qq | wc -l); A=$(pacman -Qmq | wc -l); N=$((T-A)); echo \"${T} (AUR:${A} | Repo:${N})\"",
-        "on-click": "alacritty -e sh -c 'pacman -Q | less'"
-    },
-    "custom/ip-internal": {
-        "format": "LAN: {}",
-        "interval": 30,
-        "exec": "ip -4 addr show enp0s31f6 | grep 'inet ' | awk '{print $2}' | cut -d/ -f1"
-    },
-    "custom/ip-external": {
-        "format": "WAN: {}",
-        "interval": 600,
-        "exec": "curl -4 -s ifconfig.me"
-    },
-    "custom/download_speed": {
-        "format": "↓ {}",
-        "exec": "~/.config/waybar/modules/net_speed.sh enp0s31f6",
-        "tail": true,
-        "on-click": "xdg-open 'https://www.speedtest.net/'",
-        "on-click-right": "bash -lc '~/.config/waybar/modules/net_speed.sh refresh enp0s31f6 && notify-send \"Max DL updated\"'"
-    },
-    "custom/gpu": {
-        "return-type": "json",
-        "exec": "~/.config/waybar/modules/gpu_stat.sh",
-        "tail": true,
-        "format": "󰢮  {text}",
-        "tooltip": true,
-        "max-length": 6,
-        "on-click": "alacritty -e nvtop",
-        "on-click-right": "alacritty -e bash -lc 'nvidia-smi dmon -s pucmt -i 0'",
-        "on-click-middle": "nvidia-settings"
-    },
-    "custom/sp1": {
-        "format": " | ",
-        "tooltip": false
-    },
-    "custom/sp2": {
-        "format": " |",
-        "tooltip": false
-    },
-    "custom/rofi": {
-        "format": "",
-        "tooltip": false,
-        "on-click-right": "nwg-drawer",
-        "on-click": "wofi --show run",
-        "on-click-middle": "pkill -9 wofi"
-    },
-    "custom/screenshot_t": {
-        "format": " ",
-        "on-click": "~/.config/hypr/scripts/screenshot_full",
-        "on-click-right": "~/.config/hypr/scripts/screenshot_area"
-    },
-    "clock#1": {
-        "format": " {:%a}",
-        "tooltip": false,
-        "on-click": "gsimplecal"
-    },
-    "clock#2": {
-        "format": " {:%d-%h-%Y}",
-        "tooltip": false,
-        "on-click": "gsimplecal"
-    },
-    "clock#3": {
-        "format": " {:%H:%M:%S %p}",
-        "tooltip": false,
-        "on-click": "gsimplecal"
-    },
-    "temperature": {
-        // "thermal-zone": 1,
-        "interval": 4,
-        //"hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
-        "critical-threshold": 80,
-        // "format-critical": " {temperatureC}°C",
-        "format-critical": "  {temperatureC}°C",
-        "format": "{icon}  {temperatureC}°C",
-        "format-icons": [
-            "",
-            "",
-            ""
-        ],
-        "max-length": 7,
-        "min-length": 7,
-        "on-click": "xsensors"
-    },
-    "memory": {
-        "interval": 30,
-        "format": "  {used:0.2f} / {total:0.0f} GB",
-        "on-click": "alacritty -e btop"
-    },
-    "network": {
-        "format-wifi": " {essid} ({signalStrength}%)",
-        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format": "",
-        "format-disconnected": "",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}",
-        "on-click": "wl-copy $(ip address show up scope global | grep inet | head -n1 | cut -d/ -f 1 | tr -d [:space:] | cut -c5-)",
-        "on-click-right": "wl-copy $(ip address show up scope global | grep inet6 | head -n1 | cut -d/ -f 1 | tr -d [:space:] | cut -c6-)",
-        "tooltip-format": " {bandwidthUpBits}  {bandwidthDownBits}\n{ifname}\n{ipaddr}/{cidr}\n",
-        "tooltip-format-wifi": " {essid} {frequency}MHz\nStrength: {signaldBm}dBm ({signalStrength}%)\nIP: {ipaddr}/{cidr}\n {bandwidthUpBits}  {bandwidthDownBits}",
-        "interval": 10
-    },
-    "custom/storage": {
-        "format": " {}",
-        "format-alt": "{percentage}% ",
-        "format-alt-click": "click-right",
-        "return-type": "json",
-        "interval": 60,
-        "exec": "~/.config/waybar/modules/storage.sh"
-    },
-    "backlight": {
-        "device": "intel_backlight",
-        "format": "{icon} {percent}%",
-        "format-alt": "{percent}% {icon}",
-        "format-alt-click": "click-right",
-        //"format-icons": ["", ""],
-        "format-icons": [
-            "",
-            ""
-        ],
-        "on-scroll-down": "brightnessctl s 5%-",
-        "on-scroll-up": "brightnessctl s +5%"
-    },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        },
-        "tooltip": "true"
-    },
-    "custom/weather": {
-        "format": "{}",
-        "format-alt": "{alt}: {}",
-        "format-alt-click": "click-right",
-        "interval": 3600,
-        "exec": "curl -s 'https://wttr.in/Jaksonville,NC?format=1&u'",
-        //"return-type": "json",
-        //"exec": "~/.config/waybar/modules/weather.sh",
-        "exec-if": "ping wttr.in -c1",
-        "on-click": "xdg-open 'https://weather.com/weather/today/l/8ca85fbdeecb61cbabfcfd3779fa124756d402e52ed24db40f4eff41977c8b63'"
-    },
-    "custom/pacman": {
-        "format": "<big>􏆲</big>  {}",
-        "interval": 3600, // every hour
-        "exec": "checkupdates | wc -l", // # of updates
-        "exec-if": "exit 0", // always run; consider advanced run conditions
-        "on-click": "alacritty -e 'paru'; pkill -SIGRTMIN+8 waybar", // update system
-        "signal": 8,
-        "max-length": 5,
-        "min-length": 3
-    },
-    "custom/spotify": {
-        "exec": "~/.config/waybar/mediaplayer.py --player spotify",
-        "format": "{}  ",
-        "return-type": "json",
-        "on-click": "pgrep spotify >/dev/null && playerctl --player=spotify play-pause || spotify &",
-        "on-scroll-up": "playerctl next",
-        "on-scroll-down": "playerctl previous"
-    },
-    "custom/media": {
-        "format": "{0} {1}",
-        "return-type": "json",
-        "max-length": 40,
-        "format-icons": {
-            "spotify": "",
-            "default": "🎜"
-        },
-        "escape": true,
-        //"exec": "~/.config/waybar/mediaplayer.py" // Script in resources folder
-        // "exec": "~/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-    },
-    "custom/power": {
-        "format": " 󰐥 ",
-        "tooltip": false,
-        "on-click": "wlogout"
-    },
-    "clock": {
-        "format": "  {:%H:%M   %e %b}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "today-format": "<b>{}</b>"
-    },
-    "clock#date": {
-        "format": "󰥔  {:%H:%M \n %e %b}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "today-format": "<b>{}</b>"
-    },
-    "custom/gammastep": {
-        "interval": 5,
-        "return-type": "json",
-        "exec": {
-            "pre": "if unit_status=\"$(systemctl --user is-active gammastep)\"; then\nstatus=\"$unit_status ($(journalctl --user -u gammastep.service -g 'Period: ' | tail -1 | cut -d ':' -f6 | xargs))\"\nelse\nstatus=\"$unit_status\"\nfi",
-            "alt": "${status:-inactive}",
-            "tooltip": "Gammastep is $status",
-        },
-        "format": "{icon}",
-        "format-icons": {
-            "activating": "󰁪 ",
-            "deactivating": "󰁪 ",
-            "inactive": "? ",
-            "active (Night)": " ",
-            "active (Nighttime)": " ",
-            "active (Transition (Night)": " ",
-            "active (Transition (Nighttime)": " ",
-            "active (Day)": " ",
-            "active (Daytime)": " ",
-            "active (Transition (Day)": " ",
-            "active (Transition (Daytime)": " ",
-        },
-        "on-click": "systemctl --user is-active gammastep && systemctl --user stop gammastep || systemctl --user start gammastep",
-    },
-    "cpu": {
-        "interval": 1,
-        //"format": " {}%", // Icon: microchip
-        "format": "{max_frequency}GHz <span color=\"darkgray\">| {usage}%</span>",
-        "max-length": 13,
-        "min-length": 13
-    },
-    "mpd": {
-        "max-length": 25,
-        "format": "<span foreground='#bb9af7'></span> {title}",
-        "format-paused": " {title}",
-        "format-stopped": "<span foreground='#bb9af7'></span>",
-        "format-disconnected": "",
-        "on-click": "mpc --quiet toggle",
-        "on-click-right": "mpc update; mpc ls | mpc add",
-        "on-click-middle": "alacritty -e ncmpcpp",
-        "on-scroll-up": "mpc --quiet prev",
-        "on-scroll-down": "mpc --quiet next",
-        "smooth-scrolling-threshold": 5,
-        "tooltip-format": "{title} - {artist} ({elapsedTime:%M:%S}/{totalTime:%H:%M:%S})"
-    },
-    "custom/title": {
-        "format": "{}",
-        "interval": 0,
-        "return-type": "json",
-        //"max-length": 35,
-        "tooltip": false
-    },
-    "custom/title#name": {
-        "format": "{}",
-        "interval": 0,
-        "return-type": "json",
-        "max-length": 35,
-        "exec": "$HOME/.scripts/title"
-    },
-    /*"custom/keyboard": {
-        "format": " {}",
-        "interval": 1,
-        "exec": "$HOME/.config/waybar/get_kbdlayout.sh"
-    },*/
-    "hyprland/workspaces": {
-        "all-outputs": true,
-        "format": "{name}",
-        "on-scroll-up": "hyprctl dispatch workspace e+1 1>/dev/null",
-        "on-scroll-down": "hyprctl dispatch workspace e-1 1>/dev/null",
-        "sort-by-number": true,
-        "active-only": false,
-    },
-    "hyprland/window": {
-        "max-length": 100,
-        "separate-outputs": true
-    },
-    "pulseaudio": {
-        "scroll-step": 3, // %, can be a float
-        "format": "{icon} {volume}% {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        //"format-source": "{volume}% ",
-        //"format-source-muted": "",
-        "format-source": "",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": [
-                "",
-                "",
-                ""
-            ]
-        },
-        "on-click": "pavucontrol",
-        "on-click-right": "amixer sset Master toggle"
-    },
-    "wireplumber": {
-        "on-click": "pavucontrol",
-        "on-click-right": "amixer sset Master toggle 1>/dev/null",
-        //on-click: "${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle";
-        //on-scroll-down: "${wpctl} set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 0.04+";
-        //on-scroll-up: "${wpctl} set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 0.04-";
-        "format": "<span foreground='#fab387'>{icon}</span>  {volume}%",
-        "format-muted": " ",
-        "format-source": "",
-        "format-source-muted": "",
-        //"format-muted": "<span foreground='#fab387'> </span>",
-        //"format-icons": [ "<span foreground='#fab387'></span>" ]
-        "format-icons": {
-            "headphone": " ",
-            "hands-free": " ",
-            "headset": " ",
-            "phone": " ",
-            "portable": " ",
-            "car": " ",
-            "default": [
-                " ",
-                " ",
-                " "
-            ]
-        },
-    },
-    "tray": {
-        "icon-size": 15,
-        "spacing": 5
+  "layer": "top",
+  "position": "top",
+  "modules-left": [
+    "custom/wofi",
+    "hyprland/workspaces",
+    "custom/spotify"
+  ],
+  "modules-center": [
+    "clock",
+    "custom/weather"
+  ],
+  "modules-right": [
+    "temperature",
+    "custom/pkgs",
+    "custom/low_ports",
+    "custom/download_speed",
+    "custom/internal_ip",
+    "custom/external_ip",
+    "custom/est",
+    "cpu",
+    "custom/gpu",
+    "memory",
+    "custom/mako",
+    "custom/power"
+  ],
+  "custom/spotify": {
+    "interval": 2,
+    "exec": "playerctl --player=spotify metadata --format '{{artist}} - {{title}}' 2>/dev/null || echo ''",
+    "format": "{} ",
+    "max-length": 40,
+    "on-click": "playerctl --player=spotify play-pause",
+    "on-scroll-up": "playerctl --player=spotify next",
+    "on-scroll-down": "playerctl --player=spotify previous",
+    "on-click-right": "kitty sh -lc 'cmd=\"playerctl --player=spotify metadata --format \\\"{{artist}} - {{title}}\\\"\"; echo \"$cmd\"; echo; eval \"$cmd\"; echo; read -n1 -s -r -p \"Press any key to close\"'"
+  },
+  "clock": {
+    "format": "{:%H:%M}",
+    "tooltip-format": "{:%A, %B %d, %Y}",
+    "calendar": {
+      "mode": "month",
+      "on-scroll": 1
     }
+  },
+  "custom/wofi": {
+    "format": "",
+    "tooltip": false,
+    "on-click": "wofi --show drun",
+    "on-click-middle": "pkill -9 wofi"
+  },
+  "custom/weather": {
+    "format": "{}",
+    "interval": 1800,
+    "exec": "curl -s 'https://wttr.in/?format=1&u'",
+    "exec-if": "ping -c1 -W1 wttr.in >/dev/null 2>&1",
+    "on-click": "xdg-open 'https://wttr.in/'"
+  },
+  "temperature": {
+    "interval": 4,
+    "critical-threshold": 80,
+    "format": "{icon} {temperatureC}°C",
+    "format-critical": " {temperatureC}°C",
+    "format-icons": [
+      "",
+      "",
+      ""
+    ]
+  },
+  "hyprland/workspaces": {
+    "format": "{id}",
+    "all-outputs": true
+  },
+  "custom/download_speed": {
+    "interval": 2,
+    "exec": "bash -lc 'IF=wlan0; RX1=$(cat /sys/class/net/$IF/statistics/rx_bytes); sleep 1; RX2=$(cat /sys/class/net/$IF/statistics/rx_bytes); echo $(( (RX2-RX1)/1024 ))\" KB/s\"'",
+    "format": "↓ {}",
+    "on-click": "kitty sh -lc 'cmd=\"IF=wlan0; RX1=\\$(cat /sys/class/net/\\$IF/statistics/rx_bytes); sleep 1; RX2=\\$(cat /sys/class/net/\\$IF/statistics/rx_bytes); echo \\$(( (RX2-RX1)/1024 )) KB/s\"; echo \"$cmd\"; echo; bash -lc \"$cmd\"; echo; read -n1 -s -r -p \"Press any key to close\"'"
+  },
+  "custom/low_ports": {
+    "format": "Ports: {}",
+    "interval": 5,
+    "exec": "bash -lc \"printf '%s' \\\"\\$(ss -t4n state established '( sport < 30000 )' | awk 'NR>1 {split(\\$4,l,\\\":\\\"); split(\\$5,r,\\\":\\\"); print r[2]}' | paste -sd ',' -)\\\"\""
+  },
+  "custom/internal_ip": {
+    "format": "INT {}",
+    "exec": "~/.config/waybar/scripts/internal_ip.sh",
+    "interval": 60
+  },
+  "custom/external_ip": {
+    "format": "EXT {}",
+    "exec": "~/.config/waybar/scripts/external_ip.sh",
+    "interval": 60
+  },
+  "custom/pkgs": {
+    "format": "PKG {}",
+    "exec": "~/.config/waybar/scripts/pkg_count.sh",
+    "interval": 3600
+  },
+  "custom/est": {
+    "interval": 5,
+    "exec": "ss -t state established | wc -l",
+    "format": "EST {}",
+    "on-click": "kitty sh -lc 'cmd=\"ss -t state established -p -n\"; echo \"$cmd\"; echo; eval \"$cmd\"; echo; read -n1 -s -r -p \"Press any key to close\"'"
+  },
+  "cpu": {
+    "format": "CPU {usage}%"
+  },
+  "custom/gpu": {
+    "format": "GPU {}%",
+    "exec": "~/.config/waybar/scripts/gpu_util.sh",
+    "interval": 2
+  },
+  "memory": {
+    "format": "RAM {percentage}%"
+  },
+  "custom/mako": {
+    "format": "🔔 {}",
+    "exec": "~/.config/waybar/scripts/mako_dnd.sh",
+    "interval": 1,
+    "on-click": "makoctl mode -t do-not-disturb"
+  },
+  "custom/power": {
+    "format": "⏻",
+    "on-click": "wlogout",
+    "tooltip": false
+  }
 }
