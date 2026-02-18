@@ -6,3 +6,8 @@ my custom linux setup
 clean every month
 
 https://fernandocejas.com/blog/engineering/2022-03-30-arch-linux-system-maintance/
+
+## enable to `stow`
+
+- go into `.dotfiles`
+- `stow */`
