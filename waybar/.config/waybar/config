@@ -43,7 +43,8 @@
     "calendar": {
       "mode": "month",
       "on-scroll": 1
-    }
+    },
+    "on-click": "~/.config/waybar/scripts/clock_popup.sh"
   },
   "custom/wofi": {
     "format": "",
@@ -69,10 +70,10 @@
     "on-click": "kitty sh -lc 'cmd=\"IF=wlan0; RX1=\\$(cat /sys/class/net/\\$IF/statistics/rx_bytes); sleep 1; RX2=\\$(cat /sys/class/net/\\$IF/statistics/rx_bytes); echo \\$(( (RX2-RX1)/1024 )) KB/s\"; echo \"$cmd\"; echo; bash -lc \"$cmd\"; echo; read -n1 -s -r -p \"Press any key to close\"'"
   },
   "custom/ufw": {
-	"exec": "~/.config/waybar/scripts/ufw_blocked.sh",
-	"interval": 10,
-	"return-type": "json",
-	"on-click": "kitty -e ~/.config/waybar/scripts/ufw_view.sh"
+    "exec": "~/.config/waybar/scripts/ufw_blocked.sh",
+    "interval": 10,
+    "return-type": "json",
+    "on-click": "kitty -e ~/.config/waybar/scripts/ufw_view.sh"
   },
   "custom/internal_ip": {
     "format": "{}",
