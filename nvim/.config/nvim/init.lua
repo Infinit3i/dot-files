@@ -1,9 +1,23 @@
-require("onedark").setup({
-  style = "dark"
-})
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
-require("onedark").load()require("onedark").setup({
-  style = "dark"
-})
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    lazypath,
+  })
+end
 
-require("onedark").load()
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup({
+  { "navarasu/onedark.nvim", priority = 1000,
+    config = function()
+      require("onedark").setup({ style = "dark" })
+      require("onedark").load()
+    end
+  }
+})
