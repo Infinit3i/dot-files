@@ -98,17 +98,17 @@
   },
   "cpu": {
     "format": "CPU {usage}%",
-    "states": { "warning": 60, "critical": 85 },
+    "states": { "warning": 60, "critical": 85 }
   },
   "custom/gpu": {
-    "format": "GPU {}%",
+    "format": "GPU {}",
     "exec": "~/.config/waybar/scripts/gpu_util.sh",
     "interval": 2,
     "return-type": "json"
   },
   "memory": {
     "format": "RAM {percentage}%",
-    "states": { "warning": 70, "critical": 90 },
+    "states": { "warning": 70, "critical": 90 }
   },
   "custom/mako": {
     "format": "🔔 {}",
