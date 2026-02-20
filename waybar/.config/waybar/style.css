@@ -105,3 +105,7 @@ window#waybar {
 #custom-ufw.red {
   color: #f38ba8;   /* red */
 }
+
+#cpu.warning, #memory.warning { color: #fab387; }
+#cpu.critical, #memory.critical { color: #f38ba8; }
+#cpu, #memory { color: #a6e3a1; }

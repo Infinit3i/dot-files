@@ -97,15 +97,18 @@
     "on-click": "kitty sh -lc 'cmd=\"ss -t state established -p -n\"; echo \"$cmd\"; echo; eval \"$cmd\"; echo; read -n1 -s -r -p \"Press any key to close\"'"
   },
   "cpu": {
-    "format": "CPU {usage}%"
+    "format": "CPU {usage}%",
+    "states": { "warning": 60, "critical": 85 },
   },
   "custom/gpu": {
     "format": "GPU {}%",
     "exec": "~/.config/waybar/scripts/gpu_util.sh",
-    "interval": 2
+    "interval": 2,
+    "return-type": "json"
   },
   "memory": {
-    "format": "RAM {percentage}%"
+    "format": "RAM {percentage}%",
+    "states": { "warning": 70, "critical": 90 },
   },
   "custom/mako": {
     "format": "🔔 {}",
