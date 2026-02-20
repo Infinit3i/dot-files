@@ -6,7 +6,8 @@ alias lw='librewolf'
 alias vim='nvim'
 alias vi='nvim'
 
-PROMPT='%n@%m:%~ '
+autoload -U colors && colors
+PROMPT='%F{9}%n%f@%F{233}%m%f:%F{99}%~%f %# '
 
 HISTSIZE=100000
 SAVEHIST=200000
