@@ -17,6 +17,7 @@
     "custom/external_ip",
     "custom/internal_ip",
     "custom/download_speed",
+    "custom/ufw",
     "custom/est",
     "cpu",
     "custom/gpu",
@@ -53,7 +54,7 @@
   "custom/weather": {
     "format": "{}",
     "interval": 120,
-    "exec": "curl -s 'https://wttr.in/?format=1&u'",
+    "exec": "curl -s 'https://wttr.in/?format=%t+%C&u'",
     "exec-if": "ping -c1 -W1 wttr.in >/dev/null 2>&1",
     "on-click": "xdg-open 'https://wttr.in/'"
   },
@@ -66,6 +67,12 @@
     "exec": "bash -lc 'IF=wlan0; RX1=$(cat /sys/class/net/$IF/statistics/rx_bytes); sleep 1; RX2=$(cat /sys/class/net/$IF/statistics/rx_bytes); echo $(( (RX2-RX1)/1024 ))\" KB/s\"'",
     "format": "↓ {}",
     "on-click": "kitty sh -lc 'cmd=\"IF=wlan0; RX1=\\$(cat /sys/class/net/\\$IF/statistics/rx_bytes); sleep 1; RX2=\\$(cat /sys/class/net/\\$IF/statistics/rx_bytes); echo \\$(( (RX2-RX1)/1024 )) KB/s\"; echo \"$cmd\"; echo; bash -lc \"$cmd\"; echo; read -n1 -s -r -p \"Press any key to close\"'"
+  },
+  "custom/ufw": {
+	"exec": "~/.config/waybar/scripts/ufw_blocked.sh",
+	"interval": 10,
+	"return-type": "json",
+	"on-click": "kitty -e ~/.config/waybar/scripts/ufw_view.sh"
   },
   "custom/internal_ip": {
     "format": "{}",
