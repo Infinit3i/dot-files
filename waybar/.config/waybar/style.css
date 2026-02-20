@@ -1,6 +1,5 @@
 * {
-  font-family: JetBrainsMono Nerd Font, monospace;
-  font-size: 13px;
+	font-family: "Source Code Pro";
 }
 
 window#waybar {
@@ -24,6 +23,7 @@ window#waybar {
 #custom-weather,
 #custom-spotify,
 #custom-download_speed,
+#custom-ufw,
 #custom-low_ports,
 #pulseaudio {
   padding: 1px 6px;
@@ -94,4 +94,14 @@ window#waybar {
   color: #ff5555;
 }
 
+#custom-ufw.green {
+  color: #a6e3a1;   /* green */
+}
 
+#custom-ufw.orange {
+  color: #fab387;   /* orange */
+}
+
+#custom-ufw.red {
+  color: #f38ba8;   /* red */
+}
