@@ -30,7 +30,7 @@
   "custom/rofi": {
     "format": "",
     "tooltip": false,
-    "on-click": "rofi --show drun",
+    "on-click": "rofi -show drun",
     "on-click-middle": "pkill -9 rofi"
   },
   "custom/weather": {
