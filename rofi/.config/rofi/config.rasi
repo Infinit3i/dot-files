@@ -1,0 +1,6 @@
+@theme "spotlight-dark.rasi"
+
+configuration {
+    show-icons: true;
+    modi: "drun,run,window";
+}
