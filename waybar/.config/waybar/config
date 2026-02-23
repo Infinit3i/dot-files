@@ -1,14 +1,16 @@
 {
-  "include": ["~/.dotfiles/waybar/.config/waybar/modules.json"],
+  "include": [
+    "~/.dotfiles/waybar/.config/waybar/modules.json"
+  ],
   "position": "top",
   "layer": "top",
   "height": 16,
-  "margin-top": 10,
+  "margin-top": 2,
   "margin-bottom": 0,
   "margin-left": 0,
   "margin-right": 0,
   "modules-left": [
-    "custom/wofi",
+    "custom/rofi",
     "custom/weather",
     "custom/updates",
   ],
@@ -25,16 +27,17 @@
     "clock",
     "custom/power"
   ],
-  "custom/wofi": {
+  "custom/rofi": {
     "format": "",
     "tooltip": false,
-    "on-click": "wofi --show drun",
-    "on-click-middle": "pkill -9 wofi"
+    "on-click": "rofi --show drun",
+    "on-click-middle": "pkill -9 rofi"
   },
   "custom/weather": {
-    "format": "{}",
+    "format": "{text}",
+    "return-type": "json",
     "interval": 120,
-    "exec": "curl -s 'https://wttr.in/?format=%t+%C&u'",
+    "exec": "bash ~/.config/waybar/scripts/weather.sh",
     "exec-if": "ping -c1 -W1 wttr.in >/dev/null 2>&1",
     "on-click": "xdg-open 'https://wttr.in/'"
   },
@@ -50,7 +53,7 @@
     "interval": 1,
     "on-click": "makoctl mode -t do-not-disturb"
   },
-    "custom/spotify": {
+  "custom/spotify": {
     "interval": 5,
     "exec": "playerctl --player=spotify metadata --format '{{artist}} - {{title}}' 2>/dev/null || echo ''",
     "format": "{} ",
