@@ -21,7 +21,9 @@ while true; do
   for i in "${!MONITORS[@]}"; do
     mon="${MONITORS[$i]}"
     img="${PICKS[$(( i % ${#PICKS[@]} ))]}"
-    hyprctl hyprpaper reload "${mon},${img}"
+
+    hyprctl hyprpaper preload "$img"
+    hyprctl hyprpaper wallpaper "$mon,$img"
   done
 
   sleep 180
