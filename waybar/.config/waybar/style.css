@@ -95,6 +95,8 @@ window#waybar {
 #user,
 #backlight,
 #custom-mako,
+#custom-rofi,
+#custom-weather,
 #custom-power {
   background: #11111B;
   border-radius: 16px;
@@ -139,6 +141,8 @@ window#waybar {
 #pulseaudio:hover,
 #bluetooth:hover,
 #user:hover,
+#custom-rofi:hover,
+#custom-weather:hover,
 #backlight:hover {
   background: #222;
   border: 0.5px solid #555;
@@ -155,6 +159,7 @@ window#waybar {
 #warning,
 #memory.warning,
 #custom-pkgs.warning,
+#weather.hot,
 #custom-ufw.warning { color: #e35a00; }
 
 #workspaces button.urgent,
@@ -164,3 +169,7 @@ window#waybar {
 #custom-pkgs.critical,
 #custom-ufw.critical,
 #custom-power { color: #800517; }
+
+#weather.cold {
+    color: #257de1
+}
