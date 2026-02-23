@@ -7,7 +7,7 @@ alias vim='nvim'
 alias vi='nvim'
 
 autoload -U colors && colors
-PROMPT='%F{9}%n%f@%F{233}%m%f:%F{99}%~%f %# '
+PROMPT='%F{9}%n%f@%F{238}%m%f:%F{80}%~%f %# '
 
 HISTSIZE=100000
 SAVEHIST=200000
