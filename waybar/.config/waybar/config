@@ -51,7 +51,7 @@
     "on-click": "makoctl mode -t do-not-disturb"
   },
     "custom/spotify": {
-    "interval": 2,
+    "interval": 5,
     "exec": "playerctl --player=spotify metadata --format '{{artist}} - {{title}}' 2>/dev/null || echo ''",
     "format": "{} ",
     "max-length": 40,
@@ -72,7 +72,7 @@
     },
     "scroll-step": 1,
     "on-click": "pavucontrol",
-    "on-click-right": "~/.config/waybar/scripts/audio_sink_menu.sh"
+    "on-click-right": ""
   },
   "custom/power": {
     "format": "⏻",
