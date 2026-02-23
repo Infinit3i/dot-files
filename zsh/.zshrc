@@ -5,6 +5,7 @@ export PATH="$GEM_HOME/bin:$PATH"
 alias lw='librewolf'
 alias vim='nvim'
 alias vi='nvim'
+alias p='sudo pacman'
 
 autoload -U colors && colors
 PROMPT='%F{9}%n%f@%F{238}%m%f:%F{80}%~%f %# '
