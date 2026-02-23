@@ -2,47 +2,24 @@
     border: none;
     border-radius: 0px;
     font-family: "Source Code Pro";
-    font-size: 12px;
+    font-size: 11px;
     font-style: normal;
     min-height: 0;
 }
 
+/* Push left group away from left edge */
+.modules-left {
+    margin-left: 15px;
+}
+
+/* Push right group away from right edge */
+.modules-right {
+    margin-right: 15px;
+}
+
 window#waybar {
-  background: transparent;
-  color: #eee;
-}
-
-/* Generic module styling */
-#clock,
-#temperature,
-#custom-external_ip,
-#custom-updates,
-#custom-est,
-#custom-mako,
-#custom-power,
-#custom-wofi,
-#custom-weather,
-#custom-spotify,
-#custom-download_speed,
-#custom-ufw,
-#custom-low_ports,
-#network,
-#pulseaudio {
-  padding: 0px 6px;
-  margin: 0px 2px;
-  border: 1px solid #333;
-  border-radius: 50px;
-  background: rgba(20, 20, 20, 0.85);
-}
-
-/* Hover effect */
-#custom-spotify:hover,
-#custom-download_speed:hover,
-#custom-low_ports:hover,
-#custom-wofi:hover,
-#custom-power:hover {
-  background: #222;
-  border: 0.5px solid #555;
+    background: transparent;
+    color: #eee;
 }
 
 #workspaces {
@@ -80,14 +57,91 @@ window#waybar {
     background-size: 400% 400%;
 }
 
-/* Clock emphasis */
-#clock {
-  font-weight: bold;
+#hyprland-workspaces,
+#wlr-taskbar,
+#hyprland-window,
+#custom-empty,
+#custom-tools,
+#custom-cliphist,
+#custom-wallpaper,
+#custom-waybarthemes,
+#custom-settings,
+#custom-keybindings,
+#custom-calculator,
+#custom-appmenu,
+#custom-appmenuicon,
+#custom-spotify,
+#custom-hyprshade,
+#custom-hypridle,
+#keyboard-state,
+#tray,
+#clock,
+#custom-updates,
+#custom-system,
+#hyprland-language,
+#group-hardware,
+#group-tools,
+#group-links,
+#group-settings,
+#custom-ufw,
+#custom-external_ip,
+#custom-est,
+#network,
+#group-network,
+#battery,
+#power-profiles-daemon,
+#pulseaudio,
+#bluetooth,
+#user,
+#backlight,
+#custom-mako,
+#custom-power {
+  background: #11111B;
+  border-radius: 16px;
+  border: solid 0px #f4d9e1;
+  margin: 6.5px 10px 5px 0px;
+  padding: 0px 8px;
+  color: #ffffff;
+  font-size: 13px;
 }
 
-/* Weather subtle dim */
-#custom-weather {
-  color: #ccc;
+#hyprland-workspaces:hover,
+#wlr-taskbar:hover,
+#hyprland-window:hover,
+#custom-empty:hover,
+#custom-tools:hover,
+#custom-cliphist:hover,
+#custom-wallpaper:hover,
+#custom-waybarthemes:hover,
+#custom-settings:hover,
+#custom-keybindings:hover,
+#custom-calculator:hover,
+#custom-appmenu:hover,
+#custom-appmenuicon:hover,
+#custom-hyprshade:hover,
+#custom-hypridle:hover,
+#keyboard-state:hover,
+#tray:hover,
+#custom-updates:hover,
+#custom-system:hover,
+#hyprland-language:hover,
+#group-hardware:hover,
+#group-tools:hover,
+#group-links:hover,
+#group-settings:hover,
+#custom-ufw:hover,
+#custom-external_ip:hover,
+#custom-est:hover,
+#network:hover,
+#group-network:hover,
+#battery:hover,
+#power-profiles-daemon:hover,
+#pulseaudio:hover,
+#bluetooth:hover,
+#user:hover,
+#backlight:hover {
+  background: #222;
+  border: 0.5px solid #555;
 }
 
 #custom-spotify,
