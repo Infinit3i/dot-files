@@ -1,0 +1,41 @@
+# ─── General Cyber News ─────────────────────────────
+https://www.bleepingcomputer.com/feed/
+https://therecord.media/feed/
+https://www.darkreading.com/rss.xml
+https://feeds.feedburner.com/TheHackersNews
+https://www.cyberscoop.com/feed/
+
+# ─── Government / Advisories ────────────────────────
+https://www.cisa.gov/cybersecurity-advisories/all.xml
+https://www.us-cert.gov/ncas/alerts.xml
+https://www.us-cert.gov/ncas/current-activity.xml
+
+# ─── Malware / Reverse Engineering ──────────────────
+https://malware-traffic-analysis.net/blog-entries.rss
+https://any.run/cybersecurity-blog/feed/
+https://www.virusbulletin.com/rss.xml
+https://www.eset.com/us/rss/threat-center/
+https://intezer.com/feed/
+
+# ─── Threat Intelligence / APT ──────────────────────
+https://unit42.paloaltonetworks.com/feed/
+https://blog.talosintelligence.com/feeds/posts/default
+https://securelist.com/feed/
+https://www.mandiant.com/resources/rss.xml
+https://research.checkpoint.com/feed/
+https://blog.google/threat-analysis-group/rss/
+https://cybersecurity.att.com/blogs/labs-research/rss
+https://www.welivesecurity.com/feed/
+
+# ─── Offensive / Exploit Dev ────────────────────────
+https://www.hackthebox.com/rss/blog/all
+https://portswigger.net/research/rss
+https://portswigger.net/daily-swig/rss
+https://googleprojectzero.blogspot.com/feeds/posts/default
+https://blog.exodusintel.com/feed/
+https://packetstormsecurity.com/files/rss.xml
+
+# ─── Privacy / Crypto / Policy ──────────────────────
+https://www.schneier.com/feed/atom/
+https://www.eff.org/rss/updates.xml
+https://www.privacyguides.org/rss.xml
