@@ -1,22 +1,23 @@
 * {
-	font-family: "Source Code Pro";
+    border: none;
+    border-radius: 0px;
+    font-family: "Source Code Pro";
+    font-size: 12px;
+    font-style: normal;
+    min-height: 0;
 }
 
 window#waybar {
-  background: #111;
+  background: transparent;
   color: #eee;
 }
 
 /* Generic module styling */
 #clock,
-#cpu,
-#memory,
 #temperature,
 #custom-external_ip,
-#custom-internal_ip,
-#custom-pkgs,
+#custom-updates,
 #custom-est,
-#custom-gpu,
 #custom-mako,
 #custom-power,
 #custom-wofi,
@@ -25,13 +26,13 @@ window#waybar {
 #custom-download_speed,
 #custom-ufw,
 #custom-low_ports,
+#network,
 #pulseaudio {
-  padding: 1px 3px;
-  margin: 1px 1px;
-  border: 0.5px solid #333;
-  border-radius: 14px;
-  background: rgba(20,20,20,0.85);
-  transition: background 0.2s ease, border 0.2s ease;
+  padding: 0px 6px;
+  margin: 0px 2px;
+  border: 1px solid #333;
+  border-radius: 50px;
+  background: rgba(20, 20, 20, 0.85);
 }
 
 /* Hover effect */
@@ -44,44 +45,44 @@ window#waybar {
   border: 0.5px solid #555;
 }
 
-/* Workspaces container */
 #workspaces {
-  margin: 3px 6px;
+    background: #11111B;
+    margin: 6.5px 5px;
+    padding: 8px 5px;
+    border-radius: 16px;
+    border: solid 0px #cdd6f4;
+    font-weight: normal;
+    font-style: normal;
 }
-
-/* Workspace buttons */
 #workspaces button {
-  padding: 2px 10px;
-  margin: 0 3px;
-  border-radius: 6px;
-  border: 0.5px solid #333;
-  background: rgba(20,20,20,0.85);
-  color: #aaa;
-  transition: background 0.2s ease, color 0.2s ease;
+    padding: 0px 5px;
+    margin: 0px 3px;
+    border-radius: 16px;
+    color: #2f354a;
+    background-color: #2f354a;
+    transition: all 0.2s ease-in-out;
 }
 
-/* Active workspace */
 #workspaces button.active {
-  color: #fff;
-  background: #2a2a2a;
-  border: 0.5px solid #555;
+    color: #cdd6f4;
+    background-color: #cdd6f4;
+    border-radius: 16px;
+    min-width: 40px;
+    background-size: 400% 400%;
+    transition: all 0.2s ease-in-out;
 }
 
-/* Urgent workspace */
-#workspaces button.urgent {
-  background: #a00000;
-  color: #fff;
+#workspaces button:hover {
+    background-color: transparent;
+    color: transparent;
+    border-radius: 16px;
+    min-width: 30px;
+    background-size: 400% 400%;
 }
 
 /* Clock emphasis */
 #clock {
   font-weight: bold;
-  font-size: 15px;
-}
-
-/* Spotify subtle highlight */
-#custom-spotify {
-  color: #1db954;
 }
 
 /* Weather subtle dim */
@@ -89,23 +90,23 @@ window#waybar {
   color: #ccc;
 }
 
-/* Power button stronger visual */
-#custom-power {
-  color: #ff5555;
-}
+#custom-spotify,
+#custom-ufw.normal,
+#custom-pkgs.normal,
+#normal,
+#cpu,
+#memory { color: #1db954; }
 
-#custom-ufw.green {
-  color: #a6e3a1;   /* green */
-}
+#cpu.warning,
+#warning,
+#memory.warning,
+#custom-pkgs.warning,
+#custom-ufw.warning { color: #e35a00; }
 
-#custom-ufw.orange {
-  color: #fab387;   /* orange */
-}
-
-#custom-ufw.red {
-  color: #f38ba8;   /* red */
-}
-
-#cpu.warning, #memory.warning { color: #fab387; }
-#cpu.critical, #memory.critical { color: #f38ba8; }
-#cpu, #memory { color: #a6e3a1; }
+#workspaces button.urgent,
+#critical,
+#cpu.critical,
+#memory.critical,
+#custom-pkgs.critical,
+#custom-ufw.critical,
+#custom-power { color: #800517; }

@@ -1,51 +1,30 @@
 {
-  "layer": "top",
+  "include": ["~/.dotfiles/waybar/.config/waybar/modules.json"],
   "position": "top",
+  "layer": "top",
+  "height": 16,
+  "margin-top": 10,
+  "margin-bottom": 0,
   "margin-left": 0,
   "margin-right": 0,
   "modules-left": [
     "custom/wofi",
-    "hyprland/workspaces",
-    "custom/pkgs",
-    "custom/spotify",
-    "custom/weather"
+    "custom/weather",
+    "custom/updates",
   ],
   "modules-center": [
-    "clock"
+    "hyprland/workspaces"
   ],
   "modules-right": [
-    "custom/external_ip",
-    "custom/internal_ip",
-    "custom/download_speed",
-    "custom/ufw",
-    "custom/est",
-    "cpu",
+    "group/network",
     "custom/gpu",
-    "memory",
-    "custom/mako",
+    "group/hardware",
+    "custom/spotify",
     "pulseaudio",
+    "custom/mako",
+    "clock",
     "custom/power"
   ],
-  "custom/spotify": {
-    "interval": 2,
-    "exec": "playerctl --player=spotify metadata --format '{{artist}} - {{title}}' 2>/dev/null || echo ''",
-    "format": "{} ",
-    "max-length": 40,
-    "on-click": "playerctl --player=spotify play-pause",
-    "on-scroll-up": "playerctl --player=spotify next",
-    "on-scroll-down": "playerctl --player=spotify previous",
-    "on-click-right": "kitty sh -lc 'cmd=\"playerctl --player=spotify metadata --format \\\"{{artist}} - {{title}}\\\"\"; echo \"$cmd\"; echo; eval \"$cmd\"; echo; read -n1 -s -r -p \"Press any key to close\"'"
-  },
-  "clock": {
-    "format": "{:%H:%M}",
-    "tooltip": true,
-    "tooltip-format": "<span size='10pt'><tt>{calendar}</tt></span>\n{:%A, %B %d, %Y}",
-    "calendar": {
-      "mode": "month",
-      "on-scroll": 1
-    },
-    "on-click": "~/.config/waybar/scripts/clock_popup.sh"
-  },
   "custom/wofi": {
     "format": "",
     "tooltip": false,
@@ -59,62 +38,27 @@
     "exec-if": "ping -c1 -W1 wttr.in >/dev/null 2>&1",
     "on-click": "xdg-open 'https://wttr.in/'"
   },
-  "hyprland/workspaces": {
-    "format": "{id}",
-    "all-outputs": true
-  },
-  "custom/download_speed": {
-    "interval": 5,
-    "exec": "bash -lc 'IF=wlan0; RX1=$(cat /sys/class/net/$IF/statistics/rx_bytes); sleep 1; RX2=$(cat /sys/class/net/$IF/statistics/rx_bytes); echo $(( (RX2-RX1)/1024 ))\" KB/s\"'",
-    "format": "↓ {}",
-    "on-click": "kitty sh -lc 'cmd=\"IF=wlan0; RX1=\\$(cat /sys/class/net/\\$IF/statistics/rx_bytes); sleep 1; RX2=\\$(cat /sys/class/net/\\$IF/statistics/rx_bytes); echo \\$(( (RX2-RX1)/1024 )) KB/s\"; echo \"$cmd\"; echo; bash -lc \"$cmd\"; echo; read -n1 -s -r -p \"Press any key to close\"'"
-  },
-  "custom/ufw": {
-    "exec": "~/.config/waybar/scripts/ufw_blocked.sh",
-    "interval": 10,
-    "return-type": "json",
-    "on-click": "kitty -e ~/.config/waybar/scripts/ufw_view.sh"
-  },
-  "custom/internal_ip": {
-    "format": "{}",
-    "exec": "~/.config/waybar/scripts/internal_ip.sh",
-    "interval": 360
-  },
-  "custom/external_ip": {
-    "format": "{}",
-    "exec": "~/.config/waybar/scripts/external_ip.sh",
-    "interval": 360
-  },
-  "custom/pkgs": {
-    "format": "PKG {}",
-    "exec": "~/.config/waybar/scripts/pkg_count.sh",
-    "interval": 360
-  },
-  "custom/est": {
-    "interval": 5,
-    "exec": "ss -t state established | wc -l",
-    "format": "EST {}",
-    "on-click": "kitty sh -lc 'cmd=\"ss -t state established -p -n\"; echo \"$cmd\"; echo; eval \"$cmd\"; echo; read -n1 -s -r -p \"Press any key to close\"'"
-  },
-  "cpu": {
-    "format": "CPU {usage}%",
-    "states": { "warning": 60, "critical": 85 }
-  },
   "custom/gpu": {
     "format": "GPU {}",
     "exec": "~/.config/waybar/scripts/gpu_util.sh",
     "interval": 2,
     "return-type": "json"
   },
-  "memory": {
-    "format": "RAM {percentage}%",
-    "states": { "warning": 70, "critical": 90 }
-  },
   "custom/mako": {
     "format": "🔔 {}",
     "exec": "~/.config/waybar/scripts/mako_dnd.sh",
     "interval": 1,
     "on-click": "makoctl mode -t do-not-disturb"
+  },
+    "custom/spotify": {
+    "interval": 2,
+    "exec": "playerctl --player=spotify metadata --format '{{artist}} - {{title}}' 2>/dev/null || echo ''",
+    "format": "{} ",
+    "max-length": 40,
+    "on-click": "playerctl --player=spotify play-pause",
+    "on-scroll-up": "playerctl --player=spotify next",
+    "on-scroll-down": "playerctl --player=spotify previous",
+    "on-click-right": "kitty sh -lc 'cmd=\"playerctl --player=spotify metadata --format \\\"{{artist}} - {{title}}\\\"\"; echo \"$cmd\"; echo; eval \"$cmd\"; echo; read -n1 -s -r -p \"Press any key to close\"'"
   },
   "pulseaudio": {
     "format": "{volume}% {icon}",
@@ -126,7 +70,7 @@
         ""
       ]
     },
-    "scroll-step": 2,
+    "scroll-step": 1,
     "on-click": "pavucontrol",
     "on-click-right": "~/.config/waybar/scripts/audio_sink_menu.sh"
   },
