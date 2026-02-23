@@ -26,10 +26,10 @@ window#waybar {
 #custom-ufw,
 #custom-low_ports,
 #pulseaudio {
-  padding: 1px 6px;
+  padding: 1px 3px;
   margin: 1px 1px;
   border: 0.5px solid #333;
-  border-radius: 6px;
+  border-radius: 14px;
   background: rgba(20,20,20,0.85);
   transition: background 0.2s ease, border 0.2s ease;
 }
