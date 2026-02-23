@@ -47,12 +47,6 @@
     "interval": 2,
     "return-type": "json"
   },
-  "custom/mako": {
-    "format": "🔔 {}",
-    "exec": "~/.config/waybar/scripts/mako_dnd.sh",
-    "interval": 1,
-    "on-click": "makoctl mode -t do-not-disturb"
-  },
   "custom/spotify": {
     "interval": 5,
     "exec": "playerctl --player=spotify metadata --format '{{artist}} - {{title}}' 2>/dev/null || echo ''",
