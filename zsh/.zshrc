@@ -21,3 +21,7 @@ setopt HIST_IGNORE_DUPS
 setopt HIST_REDUCE_BLANKS
 setopt EXTENDED_HISTORY
 
+# Show random Pokémon on new shell
+if command -v pokemon-colorscripts >/dev/null 2>&1; then
+  pokemon-colorscripts -r
+fi
