@@ -76,6 +76,8 @@ if command -v pokemon-colorscripts >/dev/null 2>&1; then
   pokemon-colorscripts -r
 fi
 
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
+
 # Add in zsh plugins ---------------------
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
