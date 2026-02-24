@@ -22,6 +22,7 @@ while true; do
     mon="${MONITORS[$i]}"
     img="${PICKS[$(( i % ${#PICKS[@]} ))]}"
 
+    hyprctl hyprpaper unload all
     hyprctl hyprpaper preload "$img"
     hyprctl hyprpaper wallpaper "$mon,$img"
   done
