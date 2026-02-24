@@ -33,10 +33,6 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
-# Add in snippets -----------------------
-zinit snippet OMZP::sudo
-zinit snippet OMZP::archlinux
-zinit snippet OMZP::command-not-found
 
 # Aliases -------------------------------
 alias lw='librewolf'
@@ -71,20 +67,21 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
 setopt EXTENDED_HISTORY
 
-# Show random Pokémon on new shell -------
-if command -v pokemon-colorscripts >/dev/null 2>&1; then
-  pokemon-colorscripts -r
-fi
 
-typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
+# Add in snippets -----------------------
+zinit snippet OMZP::sudo
+zinit snippet OMZP::archlinux
+zinit snippet OMZP::command-not-found
 
 # Add in zsh plugins ---------------------
+zinit ice wait
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 
 # Load completions -----------------------
-autoload -U compinit && compinit
+autoload -Uz compinit
+compinit -C
 
 zinit cdreplay -q
 
