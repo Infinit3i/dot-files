@@ -32,7 +32,17 @@ local plugins = {
       "nvim-tree/nvim-web-devicons",
     		},
     	lazy = false,
-	}
+	},
+	{
+  "folke/twilight.nvim",
+  opts = {
+    dimming = {
+      alpha = 0.25,
+    },
+    context = 10,
+    treesitter = true,
+  },
+}
 }
 local opts = {}
 
@@ -46,3 +56,6 @@ vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 -- Catppuccin ----------------------------------
 require("catppuccin").setup()
 vim.cmd.colorscheme("catppuccin")
+
+-- Twilight ------------------------------------
+vim.keymap.set("n", "<leader>t", ":Twilight<CR>", { desc = "Toggle Twilight" })
