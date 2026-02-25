@@ -1,23 +1,48 @@
+vim.g.mapleader = " "
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    lazypath,
-  })
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		lazypath,
+	})
 end
-
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
-  { "navarasu/onedark.nvim", priority = 1000,
-    config = function()
-      require("onedark").setup({ style = "dark" })
-      require("onedark").load()
-    end
-  }
-})
+-- Custom Setup Plugins ----------------------------
+local plugins = {
+	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+	{
+		"nvim-telescope/telescope.nvim",
+		version = "*",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+		},
+	},
+	{
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      "nvim-tree/nvim-web-devicons",
+    		},
+    	lazy = false,
+	}
+}
+local opts = {}
+
+require("lazy").setup(plugins, opts)
+
+-- Telescope ------------------------------------
+local builtin = require("telescope.builtin")
+vim.keymap.set('n', '<C-p>', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+
+-- Catppuccin ----------------------------------
+require("catppuccin").setup()
+vim.cmd.colorscheme("catppuccin")
