@@ -310,9 +310,9 @@
     "on-click-right": "",
   },
   "custom/clamav": {
-    "exec": "~/.dotfiles/waybar/.config/waybar/scripts/clamav_status.sh",
+    "exec": "~/.config/waybar/scripts/clamav_status.sh",
     "interval": 1200,
-    "format": "{}",
+    "format": "ClamAV {}",
     "tooltip": false
   },
   // Group Network
