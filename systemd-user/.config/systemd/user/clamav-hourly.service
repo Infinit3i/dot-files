@@ -1,0 +1,6 @@
+[Unit]
+Description=User ClamAV Hourly Scan
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/clamav-hourly.sh

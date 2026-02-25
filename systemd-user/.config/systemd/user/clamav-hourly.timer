@@ -1,0 +1,9 @@
+[Unit]
+Description=Run ClamAV scan every hour (user)
+
+[Timer]
+OnCalendar=hourly
+Persistent=true
+
+[Install]
+WantedBy=default.target
