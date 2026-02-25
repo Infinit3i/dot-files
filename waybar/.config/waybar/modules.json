@@ -309,6 +309,12 @@
     "on-click": "",
     "on-click-right": "",
   },
+  "custom/clamav": {
+    "exec": "~/.dotfiles/waybar/.config/waybar/scripts/clamav_status.sh",
+    "interval": 1200,
+    "format": "{}",
+    "tooltip": false
+  },
   // Group Network
   "group/network": {
     "orientation": "inherit",
@@ -321,7 +327,8 @@
       "network",
       "custom/external_ip",
       "custom/est",
-      "custom/ufw"
+      "custom/ufw",
+      "custom/clamav"
     ]
   },
   // Battery
