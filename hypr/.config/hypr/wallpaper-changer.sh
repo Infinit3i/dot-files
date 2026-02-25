@@ -1,31 +1,47 @@
 #!/usr/bin/env bash
-set -euo pipefail
 
-WALLPAPER_DIR="${HOME}/wallpapers"
-MONITORS=("DP-3" "DP-4" "HDMI-A-5")
+WALLPAPER_DIR="$HOME/wallpaper"
 
-mapfile -t IMAGES < <(find "$WALLPAPER_DIR" -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' \))
-(( ${#IMAGES[@]} > 0 )) || { echo "No images found in $WALLPAPER_DIR" >&2; exit 1; }
+change_wallpaper() {
+    local wallpapers=()
 
-pick_unique() {
-  local -n _out=$1
-  _out=()
-  local need=${#MONITORS[@]}
-  (( ${#IMAGES[@]} >= need )) || need=${#IMAGES[@]}
-  mapfile -t _out < <(printf '%s\n' "${IMAGES[@]}" | shuf -n "$need")
+    while IFS= read -r -d $'\0' file; do
+        wallpapers+=("$file")
+    done < <(find "$WALLPAPER_DIR" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -print0)
+
+    if [ ${#wallpapers[@]} -eq 0 ]; then
+        echo "No wallpapers found in $WALLPAPER_DIR"
+        return 1
+    fi
+
+    local random_index=$((RANDOM % ${#wallpapers[@]}))
+    local selected_wallpaper="${wallpapers[$random_index]}"
+
+    echo "Selected wallpaper: $selected_wallpaper"
+
+    # Make sure hyprpaper is running
+    if ! pgrep -x hyprpaper >/dev/null; then
+        echo "hyprpaper is not running!"
+        return 1
+    fi
+
+    # Apply via IPC (no restart, no config rewrite)
+    hyprctl hyprpaper preload "$selected_wallpaper"
+    hyprctl hyprpaper wallpaper ",$selected_wallpaper"
 }
 
-while true; do
-  pick_unique PICKS
+# Validate directory
+if [ ! -d "$WALLPAPER_DIR" ]; then
+    echo "Wallpaper directory does not exist: $WALLPAPER_DIR"
+    exit 1
+fi
 
-  for i in "${!MONITORS[@]}"; do
-    mon="${MONITORS[$i]}"
-    img="${PICKS[$(( i % ${#PICKS[@]} ))]}"
-
-    hyprctl hyprpaper unload all
-    hyprctl hyprpaper preload "$img"
-    hyprctl hyprpaper wallpaper "$mon,$img"
-  done
-
-  sleep 180
-done
+if [ "$1" = "once" ]; then
+    change_wallpaper
+else
+    echo "Starting wallpaper rotation..."
+    while true; do
+        change_wallpaper
+        sleep 60 #60 seconds
+    done
+fi
