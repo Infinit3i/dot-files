@@ -17,7 +17,7 @@
     margin-right: 15px;
 }
 
-window#waybar {
+#waybar {
     background: transparent;
     color: #eee;
 }
@@ -59,7 +59,6 @@ window#waybar {
 
 #hyprland-workspaces,
 #wlr-taskbar,
-#window,
 #custom-cliphist,
 #custom-wallpaper,
 #custom-waybarthemes,
@@ -78,7 +77,6 @@ window#waybar {
 #group-network,
 #group-tools,
 #group-links,
-#hyprland-window,
 #group-settings,
 #custom-ufw,
 #custom-external_ip,
@@ -89,6 +87,8 @@ window#waybar {
 #pulseaudio,
 #bluetooth,
 #user,
+#window,
+#custom-clamav,
 #backlight,
 #custom-rofi,
 #custom-weather,
@@ -103,21 +103,14 @@ window#waybar {
 
 #hyprland-workspaces:hover,
 #wlr-taskbar:hover,
-#hyprland-window:hover,
-#custom-empty:hover,
 #custom-tools:hover,
-#custom-cliphist:hover,
 #custom-wallpaper:hover,
 #custom-waybarthemes:hover,
 #custom-settings:hover,
-#custom-keybindings:hover,
-#custom-calculator:hover,
-#custom-appmenu:hover,
-#custom-appmenuicon:hover,
 #custom-hyprshade:hover,
 #custom-hypridle:hover,
-#keyboard-state:hover,
-#tray:hover,
+#custom-clamav:hover,
+#custom-power:hover,
 #custom-updates:hover,
 #custom-system:hover,
 #hyprland-language:hover,
@@ -133,7 +126,6 @@ window#waybar {
 #battery:hover,
 #power-profiles-daemon:hover,
 #pulseaudio:hover,
-#bluetooth:hover,
 #user:hover,
 #custom-rofi:hover,
 #custom-weather:hover,
@@ -182,3 +174,8 @@ window#waybar {
 /* Rounded ends */
 #cpu { border-radius: 16px 0px 0px 16px; padding-left: 10px; }
 #disk    { border-radius: 0px 16px 16px 0px; padding-right: 10px; margin-right: 10px; }
+
+
+#window {
+  padding: 0px 20px;
+}
