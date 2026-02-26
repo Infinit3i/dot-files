@@ -168,3 +168,15 @@ window#waybar {
 #weather.cold {
     color: #257de1
 }
+
+/* Hardware “single pill” made from 4 separate modules */
+#custom-gpu, #disk, #cpu, #memory {
+  background-color: #11111B;
+  margin: 6.5px 0px 5px 0px;   /* no gaps between them */
+  padding: 0px 8px;
+  border-radius: 0px;          /* square middle pieces */
+}
+
+/* Rounded ends */
+#custom-gpu { border-radius: 16px 0px 0px 16px; padding-left: 10px; }
+#memory    { border-radius: 0px 16px 16px 0px; padding-right: 10px; margin-right: 10px; }

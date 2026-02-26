@@ -106,18 +106,6 @@
     "on-scroll-up": "true",
     "on-scroll-down": "true"
   },
-  // Hypridle inhibitor
-  "custom/hypridle": {
-    "format": "",
-    "return-type": "json",
-    "escape": true,
-    "exec-on-event": true,
-    "interval": 60,
-    "exec": "~/.config/hypr/scripts/hypridle.sh status",
-    "on-click": "~/.config/hypr/scripts/hypridle.sh toggle",
-    "on-scroll-up": "true",
-    "on-scroll-down": "true"
-  },
   // Keyboard State
   "keyboard-state": {
     "numlock": true,
@@ -149,7 +137,7 @@
     "on-click": "kitty -e bash -c 'sudo pacman -Syyu; echo; read -n1 -s -r -p \"Press any key to close\"'"
   },
   "custom/gpu": {
-    "format": "G {}/",
+    "format": "G {}",
     "exec": "~/.config/waybar/scripts/gpu_util.sh",
     "interval": 2,
     "return-type": "json"
@@ -163,14 +151,14 @@
   },
   // CPU
   "cpu": {
-    "format": "/ C {usage}% ",
+    "format": "C {usage}% ",
     "on-click": "",
     "on-scroll-up": "true",
     "on-scroll-down": "true"
   },
   // Memory
   "memory": {
-    "format": "/ M {}% ",
+    "format": "M {}% ",
     "on-click": "kitty -e htop",
     "on-scroll-up": "true",
     "on-scroll-down": "true"
@@ -183,21 +171,6 @@
     "on-click": "",
     "on-scroll-up": "true",
     "on-scroll-down": "true"
-  },
-  "hyprland/language": {
-    "format": "/ K {short}",
-    "on-scroll-up": "true",
-    "on-scroll-down": "true"
-  },
-  // Group Hardware
-  "group/hardware": {
-    "orientation": "inherit",
-    "modules": [
-      "custom/gpu",
-      "disk",
-      "cpu",
-      "memory"
-    ]
   },
   // Group Tools
   "group/tools": {

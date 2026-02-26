@@ -19,11 +19,14 @@
   ],
   "modules-right": [
     "group/network",
-    "group/hardware",
+    "custom/gpu",
+    "disk",
+    "cpu",
+    "memory",
     "pulseaudio",
     "group/tools",
-    "clock",
     "custom/hyprshade",
+    "clock",
     "custom/power"
   ],
   "custom/weather": {
