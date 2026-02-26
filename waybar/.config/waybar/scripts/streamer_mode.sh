@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 FLAG="/tmp/waybar_streamer_mode"
+
 if [[ -f "$FLAG" ]]; then
-  echo '{"text":"NONE"}'
+    rm -f "$FLAG"
 else
-  echo "{\"text\":\"$(date '+%H:%M %a')\"}"
+    : > "$FLAG"
 fi
+
+pkill -RTMIN+8 waybar

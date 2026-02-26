@@ -1,5 +1,4 @@
 #!/bin/bash
-[[ -f /tmp/waybar_streamer_mode ]] && echo "" && exit 0
 
 OUT=$(journalctl -q -o cat --since "30 minutes ago" -g "UFW BLOCK" --no-pager 2>/dev/null)
 clear

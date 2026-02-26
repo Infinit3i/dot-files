@@ -57,19 +57,24 @@
       "Foot Server": "Terminal"
     }
   },
+  "custom/streamer": {
+    "format": "",
+    "tooltip": false,
+    "on-click": "~/.config/waybar/scripts/streamer_mode.sh"
+  },
   // Hyprland Window
-   "hyprland/window": {
+  "hyprland/window": {
     "max-length": 60,
     "format": "{class}",
     "seperate-outputs": true,
     "markup": true,
     "rewrite": {
-	"libreWolf": "<span size='150%' color='#3DAEE9'></span>",
-    	"discord": "<span size='150%' color='#5865F2'>󰙯</span>",
-    	"spotify": "<span size='150%' color='#1DB954'></span>",
-    	"VirtualBox Manager": "<span size='150%' color='#F48024'>󰆧</span>",
-    	"VirtualBox Machine": "<span size='150%' color='#00FF00'>󰆧</span>",
-    	"kitty": "<span size='150%' color='#00FFFF'></span>",
+      "libreWolf": "<span size='150%' color='#3DAEE9'></span>",
+      "discord": "<span size='150%' color='#5865F2'>󰙯</span>",
+      "spotify": "<span size='150%' color='#1DB954'></span>",
+      "VirtualBox Manager": "<span size='150%' color='#F48024'>󰆧</span>",
+      "VirtualBox Machine": "<span size='150%' color='#00FF00'>󰆧</span>",
+      "kitty": "<span size='150%' color='#00FFFF'></span>",
       "code-oss": "<span size='150%' color='#007ACC'></span>",
       "^$": "<span size='150%' color='#1793D1'></span>"
     },
@@ -124,17 +129,18 @@
     "spacing": 10
   },
   // Clock
-  "clock": {
-    "format": "{:%H:%M %a}",
-    "on-click": "",
-    "timezone": "",
-    "tooltip": false
+  "custom/clock": {
+    "return-type": "json",
+    "interval": 1,
+    "exec": "~/.config/waybar/scripts/clock.sh",
+    "exec-if": "[ ! -f /tmp/waybar_streamer_mode ]"
   },
   "custom/updates": {
     "exec": "/home/infinit3i/.config/waybar/scripts/pkg_status.sh",
-    "interval": 1800,
+    "interval": 1200,
     "return-type": "json",
-    "on-click": "kitty -e bash -c 'sudo pacman -Syyu; echo; read -n1 -s -r -p \"Press any key to close\"'"
+    "on-click": "kitty -e bash -c 'sudo pacman -Syyu; echo; read -n1 -s -r -p \"Press any key to close\"'",
+    "exec-if": "[ ! -f /tmp/waybar_streamer_mode ]"
   },
   "custom/gpu": {
     "format": "G {}",
@@ -142,38 +148,34 @@
     "interval": 2,
     "return-type": "json"
   },
-  // System
   "custom/system": {
     "format": "",
     "tooltip": false,
     "on-scroll-up": "true",
     "on-scroll-down": "true"
   },
-  // CPU
   "cpu": {
     "format": "C {usage}% ",
     "on-click": "",
     "on-scroll-up": "true",
     "on-scroll-down": "true",
     "states": {
-    "normal": 0,
-    "warning": 60,
-    "critical": 85
-  }
+      "normal": 0,
+      "warning": 60,
+      "critical": 85
+    }
   },
-  // Memory
   "memory": {
     "format": "M {}% ",
     "on-click": "kitty -e htop",
     "on-scroll-up": "true",
     "on-scroll-down": "true",
     "states": {
-    "normal": 0,
-    "warning": 60,
-    "critical": 85
-  }
+      "normal": 0,
+      "warning": 60,
+      "critical": 85
+    }
   },
-  // Harddisc space used
   "disk": {
     "interval": 30,
     "format": "D {percentage_used}% ",
@@ -182,12 +184,11 @@
     "on-scroll-up": "true",
     "on-scroll-down": "true",
     "states": {
-    "normal": 0,
-    "warning": 60,
-    "critical": 85
-  }
+      "normal": 0,
+      "warning": 60,
+      "critical": 85
+    }
   },
-  // Group Tools
   "group/tools": {
     "orientation": "inherit",
     "drawer": {
@@ -196,11 +197,9 @@
       "transition-left-to-right": false
     },
     "modules": [
-      "custom/hyprshade",
-      "power-profiles-daemon"
+      "custom/hyprshade"
     ]
   },
-  // Group Links
   "group/links": {
     "orientation": "horizontal",
     "modules": [
@@ -225,6 +224,7 @@
   // Network
   "custom/ufw": {
     "exec": "~/.config/waybar/scripts/ufw_blocked.sh",
+    "exec-if": "[ ! -f /tmp/waybar_streamer_mode ]",
     "interval": 10,
     "return-type": "json",
     "on-click": "kitty -e ~/.config/waybar/scripts/ufw_view.sh"
@@ -232,11 +232,13 @@
   "custom/external_ip": {
     "format": "{}",
     "exec": "~/.config/waybar/scripts/external_ip.sh",
-    "interval": 360
+    "exec-if": "[ ! -f /tmp/waybar_streamer_mode ]",
+    "interval": 60
   },
   "custom/est": {
     "interval": 10,
     "exec": "ss -t state established | wc -l",
+    "exec-if": "[ ! -f /tmp/waybar_streamer_mode ]",
     "format": "EST {}",
     "on-click": "kitty sh -lc 'watch -n 1 --no-title \"ss -t state established -p -n | sed \\\"s/\\t/ /g\\\"\"'"
   },
@@ -255,13 +257,14 @@
   },
   "custom/clamav": {
     "exec": "~/.config/waybar/scripts/clamav.sh",
-    "interval": 1200,
+    "exec-if": "[ ! -f /tmp/waybar_streamer_mode ]",
+    "interval": 180,
     "format": "{}",
     "tooltip": false
   },
-  // Group Network
   "group/network": {
     "orientation": "inherit",
+    "exec-if": "[ ! -f /tmp/waybar_streamer_mode ]",
     "modules": [
       "network",
       "custom/external_ip",
