@@ -71,6 +71,7 @@
 #custom-hypridle,
 #keyboard-state,
 #clock,
+#custom-streamer,
 #custom-updates,
 #hyprland-language,
 #group-hardware,
@@ -101,6 +102,7 @@
   color: #ffffff;
 }
 
+#custom-streamer:hover,
 #hyprland-workspaces:hover,
 #wlr-taskbar:hover,
 #custom-tools:hover,
