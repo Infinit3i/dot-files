@@ -60,12 +60,17 @@
   // Hyprland Window
    "hyprland/window": {
     "max-length": 60,
+    "format": "{class}",
+    "seperate-outputs": true,
+    "markup": true,
     "rewrite": {
-      "(.*) - Brave": "$1",
-      "(.*) - Chromium": "$1",
-      "(.*) - Brave Search": "$1",
-      "(.*) - Outlook": "$1",
-      "(.*) Microsoft Teams": "$1"
+	"libreWolf": "<span size='150%' color='#3DAEE9'></span>",
+    	"discord": "<span size='150%' color='#5865F2'>󰙯</span>",
+    	"spotify": "<span size='150%' color='#1DB954'></span>",
+    	"VirtualBox Manager": "<span size='150%' color='#F48024'>󰆧</span>",
+    	"kitty": "<span size='150%' color='#00FFFF'></span>",
+      "code-oss": "<span size='150%' color='#007ACC'></span>",
+      "^$": "<span size='150%' color='#1793D1'></span>"
     },
     "separate-outputs": true
   },
