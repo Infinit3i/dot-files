@@ -185,7 +185,7 @@
   },
   "custom/updates": {
     "exec": "/home/infinit3i/.config/waybar/scripts/pkg_status.sh",
-    "interval": 5,
+    "interval": 600,
     "return-type": "json",
     "on-click": "kitty -e bash -c 'sudo pacman -Syyu; echo; read -n1 -s -r -p \"Press any key to close\"'"
   },
