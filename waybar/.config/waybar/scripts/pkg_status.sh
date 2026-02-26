@@ -22,9 +22,9 @@ fi
 NEED=$((REPO_UPDATES + AUR_UPDATES))
 
 if [ "$NEED" -gt 0 ]; then
-  TEXT="⬆ ${REPO_UPDATES} | PKG ${TOTAL_PKGS} | AUR ${AUR_UPDATES}"
+  TEXT="⬆ ${REPO_UPDATES} | 󰆧 ${TOTAL_PKGS} | 󰣇 ${AUR_UPDATES}"
 else
-  TEXT="PKG ${TOTAL_PKGS}"
+  TEXT="󰆧 ${TOTAL_PKGS} | 󰣇 ${AUR_UPDATES}"
 fi
 
 # determine highest update source
