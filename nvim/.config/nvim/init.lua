@@ -32,6 +32,15 @@ local plugins = {
       "nvim-tree/nvim-web-devicons",
     		},
     	lazy = false,
+	opts = {
+	filesystem = {
+		filtered_items = {
+			visible = true,
+			hide_dotfiles = false,
+			hide_gitignored = false,
+				},
+			},
+		},
 	},
 	{
   "folke/twilight.nvim",
@@ -42,7 +51,8 @@ local plugins = {
     context = 10,
     treesitter = true,
   },
-}
+},
+{ 'nvim-mini/mini.nvim', version = '*' },
 }
 local opts = {}
 
@@ -54,7 +64,9 @@ vim.keymap.set('n', '<C-p>', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 
 -- Catppuccin ----------------------------------
-require("catppuccin").setup()
+require("catppuccin").setup({
+	transparent_background = true,
+})
 vim.cmd.colorscheme("catppuccin")
 
 -- Twilight ------------------------------------
