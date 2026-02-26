@@ -70,7 +70,6 @@
 #custom-hyprshade,
 #custom-hypridle,
 #keyboard-state,
-#clock,
 #custom-streamer,
 #custom-updates,
 #hyprland-language,
@@ -92,6 +91,7 @@
 #custom-clamav,
 #backlight,
 #custom-rofi,
+#custom-clock,
 #custom-weather,
 #custom-power {
   background: #11111B;
@@ -178,6 +178,7 @@
 #disk    { border-radius: 0px 16px 16px 0px; padding-right: 10px; margin-right: 10px; }
 
 
-#window {
+#window,
+#custom-streamer {
   padding: 0px 20px;
 }
