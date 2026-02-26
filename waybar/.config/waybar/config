@@ -4,7 +4,7 @@
   ],
   "position": "top",
   "layer": "top",
-  "height": 16,
+  "height": 46,
   "margin-top": 1,
   "margin-bottom": 0,
   "margin-left": 0,
@@ -25,14 +25,13 @@
     "memory",
     "pulseaudio",
     "group/tools",
-    "custom/hyprshade",
     "clock",
     "custom/power"
   ],
   "custom/weather": {
     "format": "{text}",
     "return-type": "json",
-    "interval": 120,
+    "interval": 300,
     "exec": "bash ~/.config/waybar/scripts/weather.sh",
     "exec-if": "ping -c1 -W1 wttr.in >/dev/null 2>&1",
     "on-click": "xdg-open 'https://wttr.in/'"
