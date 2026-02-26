@@ -68,31 +68,18 @@
     	"discord": "<span size='150%' color='#5865F2'>󰙯</span>",
     	"spotify": "<span size='150%' color='#1DB954'></span>",
     	"VirtualBox Manager": "<span size='150%' color='#F48024'>󰆧</span>",
+    	"VirtualBox Machine": "<span size='150%' color='#00FF00'>󰆧</span>",
     	"kitty": "<span size='150%' color='#00FFFF'></span>",
       "code-oss": "<span size='150%' color='#007ACC'></span>",
       "^$": "<span size='150%' color='#1793D1'></span>"
     },
     "separate-outputs": true
   },
-  // Wallpaper
-  "custom/wallpaper": {
-    "format": "",
-    "on-click": "bash -c waypaper &",
-    "on-click-right": "~/.config/hypr/scripts/wallpaper-effects.sh",
-    "tooltip-format": "Left: Select a wallpaper\nRight: Select wallpaper effect"
-  },
   // Waybar Themes
   "custom/waybarthemes": {
     "format": "",
     "on-click": "~/.config/waybar/themeswitcher.sh",
     "tooltip-format": "Select a waybar theme"
-  },
-  // Settings
-  // Calculator
-  "custom/calculator": {
-    "format": "",
-    "on-click": "qalculate-gtk",
-    "tooltip-format": "Open calculator"
   },
   // Rofi Application Launcher
   "custom/appmenu": {
@@ -161,6 +148,12 @@
     "return-type": "json",
     "on-click": "kitty -e bash -c 'sudo pacman -Syyu; echo; read -n1 -s -r -p \"Press any key to close\"'"
   },
+  "custom/gpu": {
+    "format": "G {}/",
+    "exec": "~/.config/waybar/scripts/gpu_util.sh",
+    "interval": 2,
+    "return-type": "json"
+  },
   // System
   "custom/system": {
     "format": "",
@@ -199,17 +192,11 @@
   // Group Hardware
   "group/hardware": {
     "orientation": "inherit",
-    "drawer": {
-      "transition-duration": 200,
-      "children-class": "not-memory",
-      "transition-left-to-right": false
-    },
     "modules": [
-      "custom/system",
       "custom/gpu",
       "disk",
       "cpu",
-      "memory",
+      "memory"
     ]
   },
   // Group Tools
@@ -290,11 +277,6 @@
   // Group Network
   "group/network": {
     "orientation": "inherit",
-    "drawer": {
-      "transition-duration": 200,
-      "children-class": "not-memory",
-      "transition-left-to-right": false
-    },
     "modules": [
       "network",
       "custom/external_ip",

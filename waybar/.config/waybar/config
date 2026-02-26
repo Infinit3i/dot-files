@@ -12,7 +12,7 @@
   "modules-left": [
     "hyprland/window",
     "custom/updates",
-    "custom/weather",
+    "custom/weather"
   ],
   "modules-center": [
     "hyprland/workspaces"
@@ -20,10 +20,10 @@
   "modules-right": [
     "group/network",
     "group/hardware",
-    "custom/spotify",
     "pulseaudio",
     "group/tools",
     "clock",
+    "custom/hyprshade",
     "custom/power"
   ],
   "custom/weather": {
@@ -34,35 +34,10 @@
     "exec-if": "ping -c1 -W1 wttr.in >/dev/null 2>&1",
     "on-click": "xdg-open 'https://wttr.in/'"
   },
-  "custom/gpu": {
-    "format": "G {}/",
-    "exec": "~/.config/waybar/scripts/gpu_util.sh",
-    "interval": 2,
-    "return-type": "json"
-  },
   "custom/spotify": {
-    "interval": 5,
-    "exec": "playerctl --player=spotify metadata --format '{{artist}} - {{title}}' 2>/dev/null || echo ''",
-    "format": "{} ",
-    "max-length": 40,
-    "on-click": "playerctl --player=spotify play-pause",
-    "on-scroll-up": "playerctl --player=spotify next",
-    "on-scroll-down": "playerctl --player=spotify previous",
-    "on-click-right": "kitty sh -lc 'cmd=\"playerctl --player=spotify metadata --format \\\"{{artist}} - {{title}}\\\"\"; echo \"$cmd\"; echo; eval \"$cmd\"; echo; read -n1 -s -r -p \"Press any key to close\"'"
-  },
-  "pulseaudio": {
-    "format": "{volume}% {icon}",
-    "format-muted": " muted",
-    "format-icons": {
-      "default": [
-        "",
-        "",
-        ""
-      ]
-    },
-    "scroll-step": 1,
-    "on-click": "pavucontrol",
-    "on-click-right": ""
+    "interval": 2,
+    "return-type": "json",
+    "exec": "bash -lc 's=$(playerctl --player=spotify metadata --format \"{{artist}} - {{title}}\" 2>/dev/null); if [ -n \"$s\" ]; then printf \"{\\\"text\\\":\\\"\\\",\\\"tooltip\\\":\\\"%s\\\"}\" \"${s//\\\"/\\\\\\\"}\"; else printf \"{\\\"text\\\":\\\"\\\",\\\"tooltip\\\":\\\"\\\"}\"; fi'"
   },
   "custom/power": {
     "format": "⏻",
