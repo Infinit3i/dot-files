@@ -2,9 +2,9 @@
     border: none;
     border-radius: 0px;
     font-family: "Source Code Pro";
-    font-size: 11px;
+    font-size: 13px;
     font-style: normal;
-    min-height: 0;
+    min-height: 6px;
 }
 
 /* Push left group away from left edge */
@@ -99,7 +99,6 @@ window#waybar {
   margin: 6.5px 10px 5px 0px;
   padding: 0px 8px;
   color: #ffffff;
-  font-size: 13px;
 }
 
 #hyprland-workspaces:hover,
