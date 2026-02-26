@@ -2,23 +2,15 @@
 
 LOGFILE="$HOME/.local/share/clamav-hourly.log"
 
-# Check if log exists
 if [[ ! -f "$LOGFILE" ]]; then
     echo "ClamAV: N/A"
     exit 0
 fi
 
-# Get last scan in the last hour
-LAST_SCAN=$(tail -n 20 "$LOGFILE" | grep -i "Infected files" | tail -n1)
+INFECTED=$(grep -i "Infected files" "$LOGFILE" | tail -1 | awk '{print $3}')
 
-if [[ -z "$LAST_SCAN" ]]; then
-    echo "ClamAV: ✅"
+if [[ "$INFECTED" =~ ^[0-9]+$ ]]; then
+    echo "ClamAV: $INFECTED"
 else
-    # Extract number of infected files
-    INFECTED=$(echo "$LAST_SCAN" | awk '{print $3}')
-    if [[ "$INFECTED" -eq 0 ]]; then
-        echo "ClamAV: ✅"
-    else
-        echo "ClamAV: ❌ $INFECTED"
-    fi
+    echo "ClamAV: N/A"
 fi
