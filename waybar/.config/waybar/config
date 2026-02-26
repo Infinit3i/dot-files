@@ -5,34 +5,27 @@
   "position": "top",
   "layer": "top",
   "height": 16,
-  "margin-top": 2,
+  "margin-top": 1,
   "margin-bottom": 0,
   "margin-left": 0,
   "margin-right": 0,
   "modules-left": [
-    "custom/rofi",
-    "custom/weather",
+    "hyprland/window",
     "custom/updates",
+    "custom/weather",
   ],
   "modules-center": [
     "hyprland/workspaces"
   ],
   "modules-right": [
     "group/network",
-    "custom/gpu",
     "group/hardware",
     "custom/spotify",
     "pulseaudio",
-    "custom/mako",
+    "group/tools",
     "clock",
     "custom/power"
   ],
-  "custom/rofi": {
-    "format": "",
-    "tooltip": false,
-    "on-click": "rofi -show drun",
-    "on-click-middle": "pkill -9 rofi"
-  },
   "custom/weather": {
     "format": "{text}",
     "return-type": "json",
@@ -42,7 +35,7 @@
     "on-click": "xdg-open 'https://wttr.in/'"
   },
   "custom/gpu": {
-    "format": "GPU {}",
+    "format": "G {}/",
     "exec": "~/.config/waybar/scripts/gpu_util.sh",
     "interval": 2,
     "return-type": "json"
