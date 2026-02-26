@@ -42,6 +42,6 @@ else
     echo "Starting wallpaper rotation..."
     while true; do
         change_wallpaper
-        sleep 60 #60 seconds
+        sleep 180 # 3 minutes
     done
 fi
