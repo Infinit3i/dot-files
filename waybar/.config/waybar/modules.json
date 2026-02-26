@@ -47,7 +47,6 @@
     "on-click": "activate",
     "on-click-middle": "close",
     "ignore-list": [
-      "Alacritty",
       "kitty"
     ],
     "app_ids-mapping": {
@@ -59,7 +58,7 @@
     }
   },
   // Hyprland Window
-  "hyprland/window": {
+   "hyprland/window": {
     "max-length": 60,
     "rewrite": {
       "(.*) - Brave": "$1",
@@ -69,27 +68,6 @@
       "(.*) Microsoft Teams": "$1"
     },
     "separate-outputs": true
-  },
-  // Empty
-  "custom/empty": {
-    "format": ""
-  },
-  // Tools
-  "custom/tools": {
-    "format": "",
-    "tooltip-format": "Tools",
-    "on-scroll-up": "true",
-    "on-scroll-down": "true"
-  },
-  // Cliphist
-  "custom/cliphist": {
-    "format": "",
-    "on-click": "sleep 0.1 && ~/.config/ml4w/scripts/ml4w-cliphist",
-    "on-click-right": "sleep 0.1 && ~/.config/ml4w/scripts/ml4w-cliphist d",
-    "on-click-middle": "sleep 0.1 && ~/.config/ml4w/scripts/ml4w-cliphist w",
-    "tooltip-format": "Left: Open clipboard Manager\nRight: Delete an entry\nMiddle: Clear list",
-    "on-scroll-up": "true",
-    "on-scroll-down": "true"
   },
   // Wallpaper
   "custom/wallpaper": {
@@ -105,17 +83,6 @@
     "tooltip-format": "Select a waybar theme"
   },
   // Settings
-  "custom/settings": {
-    "format": "",
-    "on-click": "sleep 0.1 && com.ml4w.dotfilessettings",
-    "tooltip-format": "ML4W Settings"
-  },
-  // Keybindings
-  "custom/keybindings": {
-    "format": "",
-    "on-click": "~/.config/hypr/scripts/keybindings.sh",
-    "tooltip": false
-  },
   // Calculator
   "custom/calculator": {
     "format": "",
@@ -179,19 +146,19 @@
   // Clock
   "clock": {
     "format": "{:%H:%M %a}",
-    "on-click": "flatpak run com.ml4w.calendar",
+    "on-click": "",
     "timezone": "",
     "tooltip": false
   },
   "custom/updates": {
     "exec": "/home/infinit3i/.config/waybar/scripts/pkg_status.sh",
-    "interval": 600,
+    "interval": 1800,
     "return-type": "json",
     "on-click": "kitty -e bash -c 'sudo pacman -Syyu; echo; read -n1 -s -r -p \"Press any key to close\"'"
   },
   // System
   "custom/system": {
-    "format": "",
+    "format": "",
     "tooltip": false,
     "on-scroll-up": "true",
     "on-scroll-down": "true"
@@ -206,7 +173,7 @@
   // Memory
   "memory": {
     "format": "/ M {}% ",
-    "on-click": "",
+    "on-click": "kitty -e htop",
     "on-scroll-up": "true",
     "on-scroll-down": "true"
   },
@@ -234,10 +201,10 @@
     },
     "modules": [
       "custom/system",
+      "custom/gpu",
       "disk",
       "cpu",
       "memory",
-      "hyprland/language"
     ]
   },
   // Group Tools
@@ -298,7 +265,7 @@
   },
   "network": {
     "format": "{ifname}",
-    "format-wifi": " {signalStrength}%",
+    "format-wifi": "  {signalStrength}%",
     "format-ethernet": "  {ifname}",
     "format-disconnected": "Disconnected ⚠",
     "tooltip-format": " {ifname} via {gwaddri}",
