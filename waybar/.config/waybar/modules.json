@@ -145,7 +145,7 @@
   "custom/gpu": {
     "format": "G {}",
     "exec": "~/.config/waybar/scripts/gpu_util.sh",
-    "interval": 2,
+    "interval": 5,
     "return-type": "json"
   },
   "custom/system": {
@@ -157,6 +157,7 @@
   "cpu": {
     "format": "C {usage}% ",
     "on-click": "",
+    "interval": 5,
     "on-scroll-up": "true",
     "on-scroll-down": "true",
     "states": {
@@ -167,6 +168,7 @@
   },
   "memory": {
     "format": "M {}% ",
+    "interval": 5,
     "on-click": "kitty -e htop",
     "on-scroll-up": "true",
     "on-scroll-down": "true",
@@ -177,7 +179,7 @@
     }
   },
   "disk": {
-    "interval": 30,
+    "interval": 180,
     "format": "D {percentage_used}% ",
     "path": "/",
     "on-click": "",
