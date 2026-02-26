@@ -25,7 +25,6 @@
     "memory",
     "disk",
     "pulseaudio",
-    "group/tools",
     "custom/clock",
     "custom/power"
   ],
@@ -34,7 +33,7 @@
     "return-type": "json",
     "interval": 300,
     "exec": "bash ~/.config/waybar/scripts/weather.sh",
-    "exec-if": "ping -c1 -W1 wttr.in >/dev/null 2>&1",
+    "exec-if": "[ ! -f /tmp/waybar_streamer_mode ]",
     "on-click": "xdg-open 'https://wttr.in/'"
   },
   "custom/spotify": {
