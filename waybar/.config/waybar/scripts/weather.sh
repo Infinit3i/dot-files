@@ -1,4 +1,5 @@
 #!/bin/bash
+[[ -f /tmp/waybar_streamer_mode ]] && echo "" && exit 0
 
 weather=$(curl -s 'https://wttr.in/?format=%t+%C&u')
 temp=$(echo "$weather" | grep -oE '[-]?[0-9]+' | head -1)

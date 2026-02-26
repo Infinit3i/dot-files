@@ -1,5 +1,7 @@
 #!/bin/bash
 
+[[ -f /tmp/waybar_streamer_mode ]] && echo "" && exit 0
+
 LOGFILE="$HOME/.local/share/clamav-hourly.log"
 
 if [[ ! -f "$LOGFILE" ]]; then

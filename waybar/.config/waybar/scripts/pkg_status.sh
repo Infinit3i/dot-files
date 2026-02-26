@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -u
 
+[[ -f /tmp/waybar_streamer_mode ]] && echo '{"text":""}' && exit 0
+
 # total installed packages
 TOTAL_PKGS=$(pacman -Qq 2>/dev/null | wc -l | tr -d ' ')
 TOTAL_PKGS=${TOTAL_PKGS:-0}
