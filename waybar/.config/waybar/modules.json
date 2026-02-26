@@ -154,14 +154,24 @@
     "format": "C {usage}% ",
     "on-click": "",
     "on-scroll-up": "true",
-    "on-scroll-down": "true"
+    "on-scroll-down": "true",
+    "states": {
+    "normal": 0,
+    "warning": 60,
+    "critical": 85
+  }
   },
   // Memory
   "memory": {
     "format": "M {}% ",
     "on-click": "kitty -e htop",
     "on-scroll-up": "true",
-    "on-scroll-down": "true"
+    "on-scroll-down": "true",
+    "states": {
+    "normal": 0,
+    "warning": 60,
+    "critical": 85
+  }
   },
   // Harddisc space used
   "disk": {
@@ -170,7 +180,12 @@
     "path": "/",
     "on-click": "",
     "on-scroll-up": "true",
-    "on-scroll-down": "true"
+    "on-scroll-down": "true",
+    "states": {
+    "normal": 0,
+    "warning": 60,
+    "critical": 85
+  }
   },
   // Group Tools
   "group/tools": {

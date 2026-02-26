@@ -145,23 +145,26 @@ window#waybar {
 #custom-spotify,
 #custom-ufw.normal,
 #custom-pkgs.normal,
-#normal,
-#cpu,
-#memory { color: #1db954; }
+#cpu.normal,
+#disk.normal,
+#custom-gpu.normal,
+#memory.normal { color: #1db954; }
 
 #cpu.warning,
-#warning,
 #memory.warning,
+#disk.warning,
 #custom-pkgs.warning,
 #weather.hot,
+#custom-gpu.warning,
 #custom-ufw.warning { color: #e35a00; }
 
 #workspaces button.urgent,
-#critical,
 #cpu.critical,
+#disk.critical,
 #memory.critical,
 #custom-pkgs.critical,
 #custom-ufw.critical,
+#custom-gpu.critical,
 #custom-power { color: #800517; }
 
 #weather.cold {
