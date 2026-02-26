@@ -13,7 +13,7 @@ GPU=${GPU//[[:space:]]/}
 [ -z "$GPU" ] && GPU="0"
 
 if [ "$GPU" -ge 85 ] 2>/dev/null; then CLASS="critical"
-elif [ "$GPU" -ge 60 ] 2>/dev/null; then CLASS="warning"
+elif [ "$GPU" -ge 55 ] 2>/dev/null; then CLASS="warning"
 else CLASS="normal"
 fi
 
