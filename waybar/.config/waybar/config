@@ -19,10 +19,10 @@
   ],
   "modules-right": [
     "group/network",
-    "custom/gpu",
-    "disk",
     "cpu",
+    "custom/gpu",
     "memory",
+    "disk",
     "pulseaudio",
     "group/tools",
     "clock",

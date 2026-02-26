@@ -180,5 +180,5 @@ window#waybar {
 }
 
 /* Rounded ends */
-#custom-gpu { border-radius: 16px 0px 0px 16px; padding-left: 10px; }
-#memory    { border-radius: 0px 16px 16px 0px; padding-right: 10px; margin-right: 10px; }
+#cpu { border-radius: 16px 0px 0px 16px; padding-left: 10px; }
+#disk    { border-radius: 0px 16px 16px 0px; padding-right: 10px; margin-right: 10px; }

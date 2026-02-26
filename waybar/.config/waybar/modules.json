@@ -238,7 +238,7 @@
     "interval": 10,
     "exec": "ss -t state established | wc -l",
     "format": "EST {}",
-    "on-click": "kitty sh -lc 'cmd=\"ss -t state established -p -n\"; echo \"$cmd\"; echo; eval \"$cmd\"; echo; read -n1 -s -r -p \"Press any key to close\"'"
+    "on-click": "kitty sh -lc 'watch -n 1 --no-title \"ss -t state established -p -n | sed \\\"s/\\t/ /g\\\"\"'"
   },
   "network": {
     "format": "{ifname}",
