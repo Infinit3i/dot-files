@@ -12,4 +12,5 @@ clamdscan \
   --exclude-dir="target$" \
   --exclude-dir="dist$" \
   --exclude-dir="build$" \
+  --exclude-dir="^$HOME/Documents$" \
   "$SCAN_DIR" >> "$LOGFILE"
