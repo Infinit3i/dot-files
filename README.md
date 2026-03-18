@@ -11,3 +11,4 @@ https://fernandocejas.com/blog/engineering/2022-03-30-arch-linux-system-maintanc
 
 - go into `.dotfiles`
 - `stow */`
+- `sudo stow -t / systemd-system`

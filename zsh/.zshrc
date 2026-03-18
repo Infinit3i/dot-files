@@ -43,6 +43,7 @@ alias ls='ls --color'
 alias ll='ls -l --color'
 alias lt='ls -alt --color'
 alias nb='newsboat'
+alias searxng='librewolf http://localhost:8080'
 
 # Shell integrations --------------------
 eval "$(fzf --zsh)"
