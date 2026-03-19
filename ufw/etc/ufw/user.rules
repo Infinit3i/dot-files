@@ -1,0 +1,44 @@
+# Core networking
+ufw allow out 53 comment 'dns'
+ufw allow out 853/tcp comment 'dns over tls'
+ufw allow out 123/udp comment 'ntp time sync'
+ufw allow out 67/udp comment 'dhcpv4 client'
+ufw allow out 546/udp comment 'dhcpv6 client'
+ufw allow out 547/udp comment 'dhcpv6 client'
+ufw allow out 239.255.255.250 port 1900 proto udp comment 'ssdp multicast lan'
+
+# HTTPS baseline (required for most apps)
+ufw allow out 443/tcp comment 'https'
+ufw allow out 443/udp comment 'https quic'
+
+# LibreWolf specific
+ufw allow out to 5.9.243.187 comment 'librewolf connectivity'
+
+# Discord
+ufw allow out 2053/tcp comment 'discord alt https via cloudflare'
+ufw allow out 3478:3481/udp comment 'discord stun turn voice negotiation'
+ufw allow out 19300:19400/udp comment 'discord voice rtp media streams'
+ufw allow out 32768:65535/udp comment 'discord webrtc fallback media range'
+
+# Steam
+ufw allow out 27000:27100/tcp comment 'steam client services + downloads'
+ufw allow out 27000:27100/udp comment 'steam gameplay + matchmaking'
+ufw allow out 3478:3480/udp comment 'steam voice stun nat traversal'
+
+# Spotify
+ufw allow out 5353/udp comment 'spotify mdns local device discovery'
+ufw allow out 56721/udp comment 'spotify local device discovery'
+ufw allow out 57621/udp comment 'spotify local device discovery'
+
+# OBS
+ufw allow out 1935/tcp comment 'obs rtmp fallback streaming'
+
+# MTG Arena
+ufw allow out 30003/tcp comment 'magic arena game traffic'
+ufw allow out 30010/tcp comment 'magic arena backend connectivity'
+
+# SearXNG
+ufw allow out 8080/tcp comment 'searxng'
+
+# WebRTC general (already partially covered by discord but safe baseline)
+ufw allow out 19300:19309/udp comment 'webrtc stun range'
