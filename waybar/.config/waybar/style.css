@@ -78,7 +78,7 @@
 #group-tools,
 #group-links,
 #group-settings,
-#custom-ufw,
+#custom-afw,
 #custom-external_ip,
 #custom-est,
 #network,
@@ -120,7 +120,7 @@
 #group-tools:hover,
 #group-links:hover,
 #group-settings:hover,
-#custom-ufw:hover,
+#custom-afw:hover,
 #custom-external_ip:hover,
 #custom-est:hover,
 #network:hover,
@@ -137,7 +137,7 @@
 }
 
 #custom-spotify,
-#custom-ufw.normal,
+#custom-afw.normal,
 #custom-pkgs.normal,
 #cpu.normal,
 #disk.normal,
@@ -150,14 +150,14 @@
 #custom-pkgs.warning,
 #weather.hot,
 #custom-gpu.warning,
-#custom-ufw.warning { color: #e35a00; }
+#custom-afw.warning { color: #e35a00; }
 
 #workspaces button.urgent,
 #cpu.critical,
 #disk.critical,
 #memory.critical,
 #custom-pkgs.critical,
-#custom-ufw.critical,
+#custom-afw.critical,
 #custom-gpu.critical,
 #custom-power { color: #800517; }
 

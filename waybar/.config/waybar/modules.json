@@ -207,7 +207,7 @@
     ]
   },
   // Network
-  "custom/ufw": {
+  "custom/afw": {
     "exec": "~/.config/waybar/scripts/ufw_blocked.sh",
     "exec-if": "[ ! -f /tmp/waybar_streamer_mode ]",
     "interval": 10,
@@ -245,7 +245,8 @@
     "exec-if": "[ ! -f /tmp/waybar_streamer_mode ]",
     "interval": 180,
     "format": "{}",
-    "tooltip": false
+    "tooltip": false,
+    "on-click": "kitty -e ~/.config/waybar/scripts/clamav_view.sh"
   },
   "group/network": {
     "orientation": "inherit",
@@ -254,7 +255,7 @@
       "network",
       "custom/external_ip",
       "custom/est",
-      "custom/ufw",
+      "custom/afw",
       "custom/clamav"
     ]
   },

@@ -1,6 +1,15 @@
 #!/bin/bash
 
-COUNT=$(journalctl -q -o cat --since "30 minutes ago" -g "UFW BLOCK" --no-pager 2>/dev/null | wc -l)
+LOG_DIR="/var/log/afw"
+HOUR=$(date +%H)
+MIN=$(date +%M)
+SLOT_MIN=$(( (10#$MIN / 30) * 30 ))
+SLOT_FILE=$(printf "blocked-%s-%02d.log" "$HOUR" "$SLOT_MIN")
+
+COUNT=0
+if [[ -f "$LOG_DIR/$SLOT_FILE" ]]; then
+  COUNT=$(grep -c "BLOCKED" "$LOG_DIR/$SLOT_FILE" 2>/dev/null || echo 0)
+fi
 
 if [ "$COUNT" -eq 0 ]; then
   CLASS="normal"
@@ -10,4 +19,4 @@ else
   CLASS="critical"
 fi
 
-echo "{\"text\":\"UFW $COUNT\",\"tooltip\":\"UFW blocks (last 30 min): $COUNT\",\"class\":\"$CLASS\"}"
+echo "{\"text\":\"AFW $COUNT\",\"tooltip\":\"AFW blocks (current slot): $COUNT\",\"class\":\"$CLASS\"}"
