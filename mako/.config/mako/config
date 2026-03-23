@@ -49,10 +49,15 @@ background-color=#bf616aff
 text-color=#eceff4
 border-color=#bf616a
 
+# ===== Do Not Disturb =====
+[mode=do-not-disturb]
+invisible=1
+
 # ===== Per-app example =====
 [app-name="Discord"]
-background-color=#4c566add
+background-color=#7289da44
 border-color=#7289da
+text-color=#c8b2ff
 
 [app-name="Spotify"]
 background-color=#1db95422

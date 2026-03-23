@@ -24,8 +24,8 @@
 
 #workspaces {
     background: #11111B;
-    margin: 6.5px 5px;
-    padding: 8px 5px;
+    margin: 3px 5px;
+    padding: 4px 5px;
     border-radius: 16px;
     border: solid 0px #cdd6f4;
     font-weight: normal;
@@ -85,6 +85,7 @@
 #battery,
 #power-profiles-daemon,
 #pulseaudio,
+#custom-dnd,
 #bluetooth,
 #user,
 #window,
@@ -97,8 +98,8 @@
   background: #11111B;
   border-radius: 16px;
   border: solid 0px #f4d9e1;
-  margin: 6.5px 10px 5px 0px;
-  padding: 0px 8px;
+  margin: 3px 10px 3px 0px;
+  padding: 0px 6px;
   color: #ffffff;
 }
 
@@ -128,6 +129,7 @@
 #battery:hover,
 #power-profiles-daemon:hover,
 #pulseaudio:hover,
+#custom-dnd:hover,
 #user:hover,
 #custom-rofi:hover,
 #custom-weather:hover,
@@ -135,6 +137,9 @@
   background: #222;
   border: 0.5px solid #555;
 }
+
+#custom-dnd.on { color: #e35a00; }
+#custom-dnd.off { color: #ffffff; }
 
 #custom-spotify,
 #custom-afw.normal,

@@ -301,6 +301,12 @@
     "interval": 60,
     "icon": false
   },
+  "custom/dnd": {
+    "exec": "~/.config/waybar/scripts/dnd.sh",
+    "interval": 5,
+    "return-type": "json",
+    "on-click": "~/.config/waybar/scripts/dnd_toggle.sh"
+  },
   // backlight:
   "backlight": {
     "format": "{icon} {percent}%",
