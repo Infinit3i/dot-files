@@ -53,8 +53,9 @@ border-color=#bf616a
 [mode=do-not-disturb]
 invisible=1
 
-# ===== Per-app example =====
-[app-name="Discord"]
+# ===== Per-app =====
+
+[app-name="discord"]
 background-color=#7289da44
 border-color=#7289da
 text-color=#c8b2ff
