@@ -9,4 +9,6 @@ else
     : > "$FLAG"
 fi
 
-pkill -RTMIN+8 waybar
+# Restart waybar so all modules re-evaluate exec-if immediately
+killall waybar 2>/dev/null
+nohup waybar &>/dev/null &
