@@ -30,8 +30,8 @@ format=<b>%a</b> — %s\n<span size="xx-small"> </span>\n%b
 # ===== Click actions (bindings) =====
 on-button-left=invoke-default-action
 on-button-right=dismiss
-# Middle-click: show app-provided actions via dmenu/wofi:
-on-button-middle=exec makoctl menu -n "$id" wofi -p 'Notification action:'
+# Middle-click: show app-provided actions via dmenu/rofi:
+on-button-middle=exec makoctl menu -n "$id" rofi -dmenu -p 'Notification action:'
 # Play a sound on new notifications (optional):
 # on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/message.oga
 
