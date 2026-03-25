@@ -1,5 +1,8 @@
 # ─── General Cyber News ─────────────────────────────
 https://www.bleepingcomputer.com/feed/
+https://krebsonsecurity.com/feed/
+https://feeds.feedburner.com/TheHackersNews
+https://www.darkreading.com/rss.xml
 
 #Video Content
 https://www.youtube.com/feeds/videos.xml?channel_id=UC7YOGHUfC1Tb6E4pudI9STA "yt"
@@ -27,21 +30,38 @@ https://any.run/cybersecurity-blog/feed/
 https://www.virusbulletin.com/rss.xml
 https://www.eset.com/us/rss/threat-center/
 https://intezer.com/feed/
+https://blog.virustotal.com/feeds/posts/default
 
 # ─── Government / Advisories ────────────────────────
 https://www.cisa.gov/cybersecurity-advisories/all.xml
+https://www.cisa.gov/cybersecurity-advisories/ics-advisories.xml
 https://www.us-cert.gov/ncas/alerts.xml
 https://www.us-cert.gov/ncas/current-activity.xml
+https://nvd.nist.gov/feeds/xml/cve/misc/nvd-rss.xml
+https://www.kb.cert.org/vuls/atomfeed/
+https://cert.europa.eu/publications/security-advisories/rss
+https://www.cisecurity.org/feed/advisories
 
 # ─── Threat Intelligence / APT ──────────────────────
 https://unit42.paloaltonetworks.com/feed/
-https://blog.talosintelligence.com/feeds/posts/default
+https://blog.talosintelligence.com/rss/
 https://securelist.com/feed/
 https://www.mandiant.com/resources/rss.xml
+https://cloud.google.com/feeds/google-cloud-blog-threat-intelligence.xml
 https://research.checkpoint.com/feed/
 https://blog.google/threat-analysis-group/rss/
 https://cybersecurity.att.com/blogs/labs-research/rss
 https://www.welivesecurity.com/feed/
+https://www.crowdstrike.com/blog/category/threat-intel-research/feed
+https://www.microsoft.com/security/blog/feed/
+https://msrc-blog.microsoft.com/feed/
+https://www.proofpoint.com/us/threat-insight-blog.xml
+https://www.sentinelone.com/blog/feed/
+https://www.bitdefender.com/blog/api/rss/labs/
+https://securityintelligence.com/feed/
+
+# ─── IOC / Vulnerability Feeds ──────────────────────
+https://isc.sans.edu/rssfeed_full.xml
 
 # ─── Offensive / Exploit Dev ────────────────────────
 https://www.hackthebox.com/rss/blog/all
