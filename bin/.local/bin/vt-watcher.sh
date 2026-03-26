@@ -14,10 +14,10 @@ VT_API="https://www.virustotal.com/api/v3/files"
 
 # Rate limiting: VT free tier = 4 requests/min
 RATE_LIMIT_DELAY=16
-CLEAN_CACHE="$CONFIG_DIR/clean_cache"
+SCANNED_CACHE="$CONFIG_DIR/scanned_cache"
 
 mkdir -p "$QUARANTINE_DIR" "$CONFIG_DIR"
-touch "$CLEAN_CACHE"
+touch "$SCANNED_CACHE"
 
 log() {
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" | tee -a "$LOG_FILE"
@@ -92,7 +92,7 @@ check_virustotal() {
     local http_code
 
     response=$(curl -s -w "\n%{http_code}" \
-        --max-time 30 \
+        --max-time 10 \
         -H "x-apikey: $API_KEY" \
         "$VT_API/$hash")
 
@@ -163,8 +163,8 @@ process_file() {
     hash=$(sha256sum "$file" | awk '{print $1}')
 
     # Skip if already verified clean
-    if grep -qF "$hash" "$CLEAN_CACHE" 2>/dev/null; then
-        log "CACHED: $filename already verified clean — skipping"
+    if grep -qF "$hash" "$SCANNED_CACHE" 2>/dev/null; then
+        log "CACHED: $filename already scanned — skipping"
         return
     fi
     echo "$(date '+%Y-%m-%d %H:%M:%S') | $hash | $filename" >> "$HASH_LOG"
@@ -180,19 +180,41 @@ process_file() {
 
     notify "normal" "VT Watcher" "Scanning: $filename"
 
+    # 30s watchdog: release file if scan takes too long
+    ( sleep 30
+      if [[ -f "$quarantine_path" ]]; then
+          echo "$hash" >> "$SCANNED_CACHE"
+          mv "$quarantine_path" "$file" 2>/dev/null
+          log "TIMEOUT: $filename — scan exceeded 30s, released to Downloads"
+          notify "normal" "VT Watcher ⏱" "$filename released (scan timeout)"
+      fi
+    ) &
+    local watchdog_pid=$!
+
     # Rate limit
     sleep "$RATE_LIMIT_DELAY"
 
     # Check VirusTotal
     local result
     result=$(check_virustotal "$hash")
+
+    # Cancel watchdog — scan completed in time
+    kill $watchdog_pid 2>/dev/null
+    wait $watchdog_pid 2>/dev/null
+
+    # If watchdog already released the file, we're done
+    if [[ ! -f "$quarantine_path" ]]; then
+        log "TIMEOUT: $filename — watchdog already released before result"
+        return
+    fi
+
     local status="${result%%:*}"
 
     case "$status" in
         CLEAN)
             local stats="${result#CLEAN:}"
             log "CLEAN: $filename ($stats) — releasing from quarantine"
-            echo "$hash" >> "$CLEAN_CACHE"
+            echo "$hash" >> "$SCANNED_CACHE"
             mv "$quarantine_path" "$file"
             notify "low" "VT Watcher ✓" "$filename is clean\n$stats"
             ;;
@@ -203,8 +225,10 @@ process_file() {
             notify "critical" "VT Watcher ✗ MALICIOUS" "$filename\nMalicious: $mal | Suspicious: $susp\nFile quarantined at:\n$quarantine_path"
             ;;
         UNKNOWN)
-            log "UNKNOWN: $filename — hash not found in VirusTotal database"
-            notify "normal" "VT Watcher ?" "$filename\nNot found in VirusTotal database.\nQuarantined at:\n$quarantine_path"
+            log "UNKNOWN: $filename — hash not found in VirusTotal database — releasing"
+            echo "$hash" >> "$SCANNED_CACHE"
+            mv "$quarantine_path" "$file"
+            notify "normal" "VT Watcher ?" "$filename\nNot in VirusTotal DB — released to Downloads"
             ;;
         RATE_LIMITED)
             # Retry once after rate limit wait
@@ -215,13 +239,17 @@ process_file() {
                 log "CLEAN (retry): $filename — released"
                 notify "low" "VT Watcher ✓" "$filename is clean (after retry)"
             else
-                log "HELD: $filename — could not verify after rate limit"
-                notify "normal" "VT Watcher" "$filename held in quarantine (rate limited)"
+                log "RELEASED: $filename — could not verify after rate limit — releasing"
+                echo "$hash" >> "$SCANNED_CACHE"
+                mv "$quarantine_path" "$file"
+                notify "normal" "VT Watcher" "$filename released (could not verify — rate limited)"
             fi
             ;;
         ERROR*)
-            log "ERROR: Could not check $filename — held in quarantine"
-            notify "normal" "VT Watcher" "$filename held in quarantine (API error)"
+            log "ERROR: Could not check $filename — releasing to Downloads"
+            echo "$hash" >> "$SCANNED_CACHE"
+            mv "$quarantine_path" "$file"
+            notify "normal" "VT Watcher" "$filename released (API error — could not verify)"
             ;;
     esac
 }
