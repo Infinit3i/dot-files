@@ -58,6 +58,7 @@
       "VirtualBox Manager": "<span size='150%' color='#F48024'>󰆧</span>",
       "VirtualBox Machine": "<span size='150%' color='#00FF00'>󰆧</span>",
       "kitty": "<span size='150%' color='#00FFFF'></span>",
+      "obsidian": "<span size='150%' color='#7C3AED'>󰂺</span>",
       "code-oss": "<span size='150%' color='#007ACC'></span>",
       "^$": "<span size='150%' color='#1793D1'></span>"
     },
@@ -208,11 +209,11 @@
   },
   // Network
   "custom/afw": {
-    "exec": "~/.config/waybar/scripts/ufw_blocked.sh",
+    "exec": "~/.config/waybar/scripts/afw_status.sh",
     "exec-if": "[ ! -f /tmp/waybar_streamer_mode ]",
     "interval": 10,
     "return-type": "json",
-    "on-click": "kitty -e ~/.config/waybar/scripts/ufw_view.sh"
+    "on-click": "kitty -e bash -c 'sudo afw status; echo; sudo afw pending; read -rp \"Press Enter to close\"'"
   },
   "custom/external_ip": {
     "format": "{}",
