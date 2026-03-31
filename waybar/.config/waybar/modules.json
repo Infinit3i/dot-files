@@ -49,6 +49,7 @@
   "hyprland/window": {
     "max-length": 60,
     "format": "{class}",
+    "tooltip": false,
     "seperate-outputs": true,
     "markup": true,
     "rewrite": {
@@ -59,6 +60,7 @@
       "VirtualBox Machine": "<span size='150%' color='#00FF00'>󰆧</span>",
       "kitty": "<span size='150%' color='#00FFFF'></span>",
       "obsidian": "<span size='150%' color='#7C3AED'>󰂺</span>",
+      "thunar": "<span size='150%' color='#4A90D9'></span>",
       "code-oss": "<span size='150%' color='#007ACC'></span>",
       "^$": "<span size='150%' color='#1793D1'></span>"
     },
