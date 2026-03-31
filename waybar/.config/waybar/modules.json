@@ -255,8 +255,8 @@
     "exec": "~/.config/waybar/scripts/clamav.sh",
     "exec-if": "[ ! -f /tmp/waybar_streamer_mode ]",
     "interval": 180,
+    "return-type": "json",
     "format": "{}",
-    "tooltip": false,
     "on-click": "kitty -e ~/.config/waybar/scripts/clamav_view.sh"
   },
   "group/network": {

@@ -164,6 +164,7 @@
 #custom-pkgs.critical,
 #custom-afw.critical,
 #custom-gpu.critical,
+#custom-clamav.critical,
 #custom-power { color: #800517; }
 
 #weather.cold {
