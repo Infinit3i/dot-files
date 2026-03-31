@@ -13,14 +13,25 @@
     "disable-scroll": false,
     "on-scroll-up": "hyprctl dispatch workspace e-1",
     "on-scroll-down": "hyprctl dispatch workspace e+1",
-    "format": "{icon}",
+    "format": "{windows}",
+    "format-window-separator": " ",
+    "window-rewrite-default": "",
+    "window-rewrite": {
+      "class<librewolf>": "",
+      "class<discord>": "󰙯",
+      "class<spotify>": "",
+      "class<VirtualBox Manager>": "󰆧",
+      "class<VirtualBox Machine>": "󰆧",
+      "class<kitty>": "",
+      "class<obsidian>": "󰭺",
+      "class<code-oss>": "",
+      "class<thunar>": "",
+      "class<steam>": "",
+      "class<mpv>": "",
+      "class<obs>": ""
+    },
     "tooltip": false,
-    "sort-by-number": true,
-    "format-icons": {
-      "default": "",
-      "active": "",
-      "urgent": ""
-    }
+    "sort-by-number": true
   },
   // Taskbar
   "wlr/taskbar": {
@@ -102,10 +113,6 @@
     "numlock": true,
     "capslock": true,
     "format": "{name} {icon}",
-    "format-icons": {
-      "locked": "",
-      "unlocked": ""
-    },
     "on-scroll-up": "true",
     "on-scroll-down": "true"
   },
@@ -271,19 +278,6 @@
     "format-muted": " {format_source}",
     "format-source": "{volume}% ",
     "format-source-muted": "",
-    "format-icons": {
-      "headphone": " ",
-      "hands-free": " ",
-      "headset": " ",
-      "phone": " ",
-      "portable": " ",
-      "car": " ",
-      "default": [
-        "",
-        "",
-        ""
-      ]
-    },
     "on-click": "pavucontrol"
   },
   // Bluetooth

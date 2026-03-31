@@ -32,16 +32,16 @@
     font-style: normal;
 }
 #workspaces button {
-    padding: 0px 5px;
+    padding: 0px 16px;
     margin: 0px 3px;
     border-radius: 16px;
-    color: #2f354a;
+    color: #6c7086;
     background-color: #2f354a;
     transition: all 0.2s ease-in-out;
 }
 
 #workspaces button.active {
-    color: #cdd6f4;
+    color: #45475a;
     background-color: #cdd6f4;
     border-radius: 16px;
     min-width: 40px;
