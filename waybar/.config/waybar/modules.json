@@ -130,9 +130,10 @@
   },
   "custom/updates": {
     "exec": "/home/infinit3i/.config/waybar/scripts/pkg_status.sh",
-    "interval": 1200,
+    "interval": 600,
     "return-type": "json",
-    "on-click": "kitty -e bash -c 'sudo pacman -Syyu; echo; read -n1 -s -r -p \"Press any key to close\"'",
+    "on-click": "kitty -e bash -c 'yay -Syyu; echo; read -n1 -s -r -p \"Press any key to close\"'; pkill -SIGRTMIN+8 waybar",
+    "signal": 8,
     "exec-if": "[ ! -f /tmp/waybar_streamer_mode ]"
   },
   "custom/gpu": {
@@ -228,7 +229,7 @@
     "format": "{}",
     "exec": "~/.config/waybar/scripts/external_ip.sh",
     "exec-if": "[ ! -f /tmp/waybar_streamer_mode ]",
-    "interval": 60
+    "interval": 1800
   },
   "custom/est": {
     "interval": 10,
