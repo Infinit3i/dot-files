@@ -7,10 +7,4 @@ clamdscan \
   --multiscan \
   --fdpass \
   --infected \
-  --exclude-dir="\.git$" \
-  --exclude-dir="node_modules$" \
-  --exclude-dir="target$" \
-  --exclude-dir="dist$" \
-  --exclude-dir="build$" \
-  --exclude-dir="^$HOME/Documents$" \
   "$SCAN_DIR" >> "$LOGFILE"
