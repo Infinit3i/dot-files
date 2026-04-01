@@ -100,6 +100,10 @@
 #custom-external_ip,
 #custom-est,
 #network,
+#cpu,
+#custom-gpu,
+#memory,
+#disk,
 #battery,
 #power-profiles-daemon,
 #pulseaudio,
@@ -114,7 +118,7 @@
   border-radius: 0px;
   border: none;
   margin: 0px 0px;
-  padding: 0px 6px;
+  padding: 0px 8px;
   color: #ffffff;
 }
 
@@ -193,14 +197,6 @@
 
 #weather.cold {
     color: #257de1
-}
-
-/* Hardware modules — flat inside the shared right bar */
-#custom-gpu, #disk, #cpu, #memory {
-  background: transparent;
-  margin: 0px;
-  padding: 0px 6px;
-  border-radius: 0px;
 }
 
 #window {
