@@ -132,7 +132,7 @@
     "exec": "/home/infinit3i/.config/waybar/scripts/pkg_status.sh",
     "interval": 600,
     "return-type": "json",
-    "on-click": "kitty -e bash -c 'yay -Syyu; echo; read -n1 -s -r -p \"Press any key to close\"'; pkill -SIGRTMIN+8 waybar",
+    "on-click": "kitty -e bash -c 'yay -Syyu; echo; read -n1 -s -r -p \"Press any key to close\"'; rm -f /tmp/waybar_pkg_status.json; pkill -SIGRTMIN+8 waybar",
     "signal": 8,
     "exec-if": "[ ! -f /tmp/waybar_streamer_mode ]"
   },
