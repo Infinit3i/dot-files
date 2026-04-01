@@ -7,9 +7,14 @@
     min-height: 6px;
 }
 
-/* Push left group away from left edge */
+/* Push left group away from left edge — single grouped bar */
 .modules-left {
     margin-left: 15px;
+    background: #11111B;
+    border-radius: 16px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding: 0px 4px;
 }
 
 /* Push right group away from right edge — single grouped bar */
@@ -62,7 +67,19 @@
     background-size: 400% 400%;
 }
 
-/* Left-side modules keep individual bubbles */
+/* Left-side modules — no individual bubbles, shared background from .modules-left */
+#window,
+#custom-updates,
+#custom-weather {
+  background: transparent;
+  border-radius: 0px;
+  border: none;
+  margin: 0px 0px;
+  padding: 0px 8px;
+  color: #ffffff;
+}
+
+/* Other modules keep individual bubbles */
 #hyprland-workspaces,
 #wlr-taskbar,
 #custom-cliphist,
@@ -76,15 +93,12 @@
 #custom-hyprshade,
 #custom-hypridle,
 #keyboard-state,
-#custom-updates,
 #hyprland-language,
 #group-hardware,
 #group-tools,
 #group-links,
 #group-settings,
-#window,
-#custom-rofi,
-#custom-weather {
+#custom-rofi {
   background: #11111B;
   border-radius: 16px;
   border: solid 0px #f4d9e1;
@@ -122,26 +136,11 @@
   color: #ffffff;
 }
 
-/* Left-side hover — keep bubble hover effect */
-#hyprland-workspaces:hover,
-#wlr-taskbar:hover,
-#custom-tools:hover,
-#custom-wallpaper:hover,
-#custom-waybarthemes:hover,
-#custom-settings:hover,
-#custom-hyprshade:hover,
-#custom-hypridle:hover,
+/* Left-side hover — dim text */
+#window:hover,
 #custom-updates:hover,
-#custom-system:hover,
-#hyprland-language:hover,
-#group-hardware:hover,
-#group-tools:hover,
-#group-links:hover,
-#group-settings:hover,
-#custom-rofi:hover,
 #custom-weather:hover {
-  background: #222;
-  border: 0.5px solid #555;
+  color: #aaaaaa;
 }
 
 /* Right-side hover — dim text slightly, no background change */
@@ -181,9 +180,10 @@
 #memory.warning,
 #disk.warning,
 #custom-pkgs.warning,
-#weather.hot,
 #custom-gpu.warning,
 #custom-afw.warning { color: #e35a00; }
+
+#custom-weather.hot { color: #ff4444; }
 
 #workspaces button.urgent,
 #cpu.critical,
@@ -195,10 +195,11 @@
 #custom-clamav.critical,
 #custom-power { color: #800517; }
 
-#weather.cold {
+#custom-weather.cold {
     color: #257de1
 }
 
-#window {
-  padding: 0px 20px;
+#custom-streamer {
+  padding: 0px 14px 0px 8px;
 }
+
