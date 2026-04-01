@@ -12,9 +12,14 @@
     margin-left: 15px;
 }
 
-/* Push right group away from right edge */
+/* Push right group away from right edge — single grouped bar */
 .modules-right {
     margin-right: 15px;
+    background: #11111B;
+    border-radius: 16px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding: 0px 4px;
 }
 
 #waybar {
@@ -57,6 +62,7 @@
     background-size: 400% 400%;
 }
 
+/* Left-side modules keep individual bubbles */
 #hyprland-workspaces,
 #wlr-taskbar,
 #custom-cliphist,
@@ -70,14 +76,26 @@
 #custom-hyprshade,
 #custom-hypridle,
 #keyboard-state,
-#custom-streamer,
 #custom-updates,
 #hyprland-language,
 #group-hardware,
-#group-network,
 #group-tools,
 #group-links,
 #group-settings,
+#window,
+#custom-rofi,
+#custom-weather {
+  background: #11111B;
+  border-radius: 16px;
+  border: solid 0px #f4d9e1;
+  margin: 3px 10px 3px 0px;
+  padding: 0px 6px;
+  color: #ffffff;
+}
+
+/* Right-side modules — no individual bubbles, shared background from .modules-right */
+#custom-streamer,
+#group-network,
 #custom-afw,
 #custom-external_ip,
 #custom-est,
@@ -88,22 +106,19 @@
 #custom-dnd,
 #bluetooth,
 #user,
-#window,
 #custom-clamav,
 #backlight,
-#custom-rofi,
 #custom-clock,
-#custom-weather,
 #custom-power {
-  background: #11111B;
-  border-radius: 16px;
-  border: solid 0px #f4d9e1;
-  margin: 3px 10px 3px 0px;
+  background: transparent;
+  border-radius: 0px;
+  border: none;
+  margin: 0px 0px;
   padding: 0px 6px;
   color: #ffffff;
 }
 
-#custom-streamer:hover,
+/* Left-side hover — keep bubble hover effect */
 #hyprland-workspaces:hover,
 #wlr-taskbar:hover,
 #custom-tools:hover,
@@ -112,8 +127,6 @@
 #custom-settings:hover,
 #custom-hyprshade:hover,
 #custom-hypridle:hover,
-#custom-clamav:hover,
-#custom-power:hover,
 #custom-updates:hover,
 #custom-system:hover,
 #hyprland-language:hover,
@@ -121,8 +134,17 @@
 #group-tools:hover,
 #group-links:hover,
 #group-settings:hover,
+#custom-rofi:hover,
+#custom-weather:hover {
+  background: #222;
+  border: 0.5px solid #555;
+}
+
+/* Right-side hover — dim text slightly, no background change */
+#custom-streamer:hover,
+#custom-clamav:hover,
+#custom-power:hover,
 #custom-afw:hover,
-#custom-external_ip:hover,
 #custom-est:hover,
 #network:hover,
 #group-network:hover,
@@ -131,11 +153,13 @@
 #pulseaudio:hover,
 #custom-dnd:hover,
 #user:hover,
-#custom-rofi:hover,
-#custom-weather:hover,
-#backlight:hover {
-  background: #222;
-  border: 0.5px solid #555;
+#backlight:hover,
+#custom-clock:hover,
+#cpu:hover,
+#custom-gpu:hover,
+#memory:hover,
+#disk:hover {
+  color: #aaaaaa;
 }
 
 #custom-dnd.on { color: #e35a00; }
@@ -171,20 +195,14 @@
     color: #257de1
 }
 
-/* Hardware “single pill” made from 4 separate modules */
+/* Hardware modules — flat inside the shared right bar */
 #custom-gpu, #disk, #cpu, #memory {
-  background-color: #11111B;
-  margin: 6.5px 0px 5px 0px;   /* no gaps between them */
-  padding: 0px 8px;
-  border-radius: 0px;          /* square middle pieces */
+  background: transparent;
+  margin: 0px;
+  padding: 0px 6px;
+  border-radius: 0px;
 }
 
-/* Rounded ends */
-#cpu { border-radius: 16px 0px 0px 16px; padding-left: 10px; }
-#disk    { border-radius: 0px 16px 16px 0px; padding-right: 10px; margin-right: 10px; }
-
-
-#window,
-#custom-streamer {
+#window {
   padding: 0px 20px;
 }

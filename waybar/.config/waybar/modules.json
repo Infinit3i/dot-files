@@ -229,13 +229,15 @@
     "format": "{}",
     "exec": "~/.config/waybar/scripts/external_ip.sh",
     "exec-if": "[ ! -f /tmp/waybar_streamer_mode ]",
-    "interval": 1800
+    "interval": 1800,
+    "tooltip": false
   },
   "custom/est": {
     "interval": 10,
-    "exec": "ss -t state established | wc -l",
+    "exec": "~/.config/waybar/scripts/est_conn.sh",
     "exec-if": "[ ! -f /tmp/waybar_streamer_mode ]",
-    "format": "EST {}",
+    "return-type": "json",
+    "format": "{}",
     "on-click": "kitty sh -lc 'watch -n 1 --no-title \"ss -t state established -p -n | sed \\\"s/\\t/ /g\\\"\"'"
   },
   "network": {

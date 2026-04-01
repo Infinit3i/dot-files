@@ -56,9 +56,9 @@ invisible=1
 # ===== Per-app =====
 
 [app-name="discord"]
-background-color=#7289da44
+background-color=#1e2033e6
 border-color=#7289da
-text-color=#c8b2ff
+text-color=#eceff4
 
 [app-name="Spotify"]
 background-color=#1db95422

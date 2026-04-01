@@ -19,7 +19,11 @@
   ],
   "modules-right": [
     "custom/streamer",
-    "group/network",
+    "network",
+    "custom/external_ip",
+    "custom/est",
+    "custom/afw",
+    "custom/clamav",
     "cpu",
     "custom/gpu",
     "memory",
