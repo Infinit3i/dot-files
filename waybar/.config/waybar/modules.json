@@ -64,16 +64,16 @@
     "seperate-outputs": true,
     "markup": true,
     "rewrite": {
-      "libreWolf": "<span size='150%' color='#3DAEE9'></span>",
-      "discord": "<span size='150%' color='#5865F2'>󰙯</span>",
-      "spotify": "<span size='150%' color='#1DB954'></span>",
-      "VirtualBox Manager": "<span size='150%' color='#F48024'>󰆧</span>",
-      "VirtualBox Machine": "<span size='150%' color='#00FF00'>󰆧</span>",
-      "kitty": "<span size='150%' color='#00FFFF'></span>",
-      "obsidian": "<span size='150%' color='#7C3AED'>󰂺</span>",
-      "thunar": "<span size='150%' color='#4A90D9'></span>",
-      "code-oss": "<span size='150%' color='#007ACC'></span>",
-      "^$": "<span size='150%' color='#1793D1'></span>"
+      "libreWolf": "<span size='120%' color='#3DAEE9'></span>",
+      "discord": "<span size='120%' color='#5865F2'>󰙯</span>",
+      "spotify": "<span size='120%' color='#1DB954'></span>",
+      "VirtualBox Manager": "<span size='120%' color='#F48024'>󰆧</span>",
+      "VirtualBox Machine": "<span size='120%' color='#00FF00'>󰆧</span>",
+      "kitty": "<span size='120%' color='#00FFFF'></span>",
+      "obsidian": "<span size='120%' color='#7C3AED'>󰂺</span>",
+      "thunar": "<span size='120%' color='#4A90D9'></span>",
+      "code-oss": "<span size='120%' color='#007ACC'></span>",
+      "^$": "<span size='120%' color='#1793D1'></span>"
     },
     "separate-outputs": true
   },
