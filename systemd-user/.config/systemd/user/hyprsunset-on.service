@@ -1,0 +1,8 @@
+[Unit]
+Description=Start hyprsunset night filter
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/hyprsunset -t 3500
+RemainAfterExit=yes
+ExecStop=/usr/bin/killall hyprsunset

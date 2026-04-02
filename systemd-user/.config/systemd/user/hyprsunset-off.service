@@ -1,0 +1,6 @@
+[Unit]
+Description=Stop hyprsunset night filter
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/killall hyprsunset
