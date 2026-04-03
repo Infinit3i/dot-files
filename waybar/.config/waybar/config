@@ -28,6 +28,7 @@
     "custom/gpu",
     "memory",
     "disk",
+    "custom/uptime",
     "pulseaudio",
     "custom/dnd",
     "custom/clock",
