@@ -68,6 +68,71 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
 setopt EXTENDED_HISTORY
 
+# Scrub sensitive commands from history -
+# Patterns that indicate secrets (case-insensitive partial matches)
+_sensitive_patterns=(
+  password
+  passwd
+  secret
+  token
+  api_key
+  apikey
+  api-key
+  private_key
+  privatekey
+  credential
+  auth_token
+  access_key
+  accesskey
+  secret_key
+  secretkey
+  ssh-keygen
+  openssl
+  AWS_SECRET
+  AWS_ACCESS
+  ANTHROPIC_API_KEY
+  OPENAI_API_KEY
+)
+
+# Build a single regex from the patterns
+_sensitive_regex="($(IFS='|'; echo "${_sensitive_patterns[*]}"))"
+
+# Hook that runs before each command is added to history
+# Returning 1 from zshaddhistory prevents the line from being saved
+zshaddhistory() {
+  local cmd="${1%%$'\n'}"
+  if [[ "${cmd:l}" =~ "${_sensitive_regex:l}" ]]; then
+    return 1
+  fi
+  return 0
+}
+
+# One-time cleanup: scrub existing history file of sensitive entries
+scrub_history() {
+  local histfile="${HISTFILE:-$HOME/.zsh_history}"
+  if [[ ! -f "$histfile" ]]; then
+    echo "No history file found at $histfile"
+    return 1
+  fi
+  local count=0
+  local tmpfile=$(mktemp)
+  while IFS= read -r line; do
+    local dominated=false
+    for pat in "${_sensitive_patterns[@]}"; do
+      if [[ "${line:l}" == *"${pat:l}"* ]]; then
+        dominated=true
+        ((count++))
+        break
+      fi
+    done
+    if ! $dominated; then
+      echo "$line" >> "$tmpfile"
+    fi
+  done < "$histfile"
+  mv "$tmpfile" "$histfile"
+  echo "Scrubbed $count sensitive entries from history."
+  fc -R  # reload history
+}
 
 # Add in snippets -----------------------
 zinit snippet OMZP::sudo
