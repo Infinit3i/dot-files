@@ -2,7 +2,6 @@
 Description=Start hyprsunset night filter
 
 [Service]
-Type=oneshot
+Type=simple
 ExecStart=/usr/bin/hyprsunset -t 3500
-RemainAfterExit=yes
-ExecStop=/usr/bin/killall hyprsunset
+Restart=on-failure

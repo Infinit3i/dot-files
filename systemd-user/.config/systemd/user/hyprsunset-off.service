@@ -3,4 +3,5 @@ Description=Stop hyprsunset night filter
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/killall hyprsunset
+ExecStart=/usr/bin/systemctl --user kill --signal=SIGTERM hyprsunset-on.service
+ExecStartPost=/usr/bin/systemctl --user reset-failed hyprsunset-on.service
