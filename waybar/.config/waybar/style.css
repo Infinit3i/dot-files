@@ -170,7 +170,7 @@
 
 #custom-spotify,
 #custom-afw.normal,
-#custom-pkgs.normal,
+#custom-updates.normal,
 #cpu.normal,
 #disk.normal,
 #custom-gpu.normal,
@@ -179,7 +179,7 @@
 #cpu.warning,
 #memory.warning,
 #disk.warning,
-#custom-pkgs.warning,
+#custom-updates.warning,
 #custom-gpu.warning,
 #custom-afw.warning { color: #e35a00; }
 
@@ -189,11 +189,13 @@
 #cpu.critical,
 #disk.critical,
 #memory.critical,
-#custom-pkgs.critical,
+#custom-updates.critical,
 #custom-afw.critical,
 #custom-gpu.critical,
 #custom-clamav.critical,
 #custom-power { color: #800517; }
+
+#custom-updates.critical { font-weight: bold; }
 
 #custom-weather.cold {
     color: #257de1

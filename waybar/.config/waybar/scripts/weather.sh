@@ -2,6 +2,7 @@
 
 weather=$(curl -s 'https://wttr.in/Dumfries,VA?format=%t+%C&u')
 temp_f=$(echo "$weather" | grep -oE '[-+]?[0-9]+' | head -1)
+temp_f=${temp_f#+}
 
 display="${temp_f}°F"
 
