@@ -137,7 +137,7 @@
     "exec-if": "[ ! -f /tmp/waybar_streamer_mode ]"
   },
   "custom/gpu": {
-    "format": "G {}",
+    "format": "󰢮 {}",
     "exec": "~/.config/waybar/scripts/gpu_util.sh",
     "interval": 5,
     "return-type": "json"
@@ -149,7 +149,7 @@
     "on-scroll-down": "true"
   },
   "cpu": {
-    "format": "C {usage}% ",
+    "format": " {usage}% ",
     "on-click": "",
     "interval": 5,
     "on-scroll-up": "true",
@@ -161,7 +161,7 @@
     }
   },
   "memory": {
-    "format": "M {}% ",
+    "format": "󰘚 {}% ",
     "interval": 5,
     "on-click": "kitty -e htop",
     "on-scroll-up": "true",
@@ -174,7 +174,7 @@
   },
   "disk": {
     "interval": 180,
-    "format": "D {percentage_used}% ",
+    "format": " {percentage_used}% ",
     "path": "/",
     "on-click": "",
     "on-scroll-up": "true",

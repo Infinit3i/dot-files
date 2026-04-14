@@ -30,4 +30,4 @@ if [ -n "$STATUS" ]; then
   fi
 fi
 
-echo "{\"text\":\"AFW $APPS / $PORTS / $BLOCKS\",\"tooltip\":\"$TOOLTIP\",\"class\":\"$CLASS\"}"
+echo "{\"text\":\"AFW $APPS/$PORTS/$BLOCKS\",\"tooltip\":\"$TOOLTIP\",\"class\":\"$CLASS\"}"
