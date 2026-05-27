@@ -26,6 +26,10 @@ fi
 TOTAL_PKGS=$(pacman -Qq 2>/dev/null | wc -l | tr -d ' ')
 TOTAL_PKGS=${TOTAL_PKGS:-0}
 
+# total AUR (foreign) installed packages
+AUR_INSTALLED=$(pacman -Qmq 2>/dev/null | wc -l | tr -d ' ')
+AUR_INSTALLED=${AUR_INSTALLED:-0}
+
 # repo updates (force fresh db check)
 REPO_UPDATES=0
 if command -v checkupdates >/dev/null 2>&1; then
@@ -46,10 +50,11 @@ AUR_UPDATES=${AUR_UPDATES:-0}
 
 NEED=$((REPO_UPDATES + AUR_UPDATES))
 
+BASE="󰏖 ${TOTAL_PKGS} 󰣇 ${AUR_INSTALLED}"
 if [ "$NEED" -gt 0 ]; then
-  TEXT="⬆ ${NEED}"
+  TEXT="${BASE} ⬆ ${NEED}"
 else
-  TEXT=""
+  TEXT="${BASE}"
 fi
 
 # determine highest update source
@@ -65,7 +70,7 @@ elif [ "$MAX_SRC" -ge 10 ]; then
   CLASS="warning"
 fi
 
-TOOLTIP="Installed: ${TOTAL_PKGS}\\nRepo updates: ${REPO_UPDATES}\\nAUR updates: ${AUR_UPDATES}"
+TOOLTIP="Installed: ${TOTAL_PKGS}\\nAUR installed: ${AUR_INSTALLED}\\nRepo updates: ${REPO_UPDATES}\\nAUR updates: ${AUR_UPDATES}"
 OUTPUT=$(printf '{"text":"%s","tooltip":"%s","class":"%s"}\n' "$TEXT" "$TOOLTIP" "$CLASS")
 echo "$OUTPUT" > "$CACHE"
 echo "$OUTPUT"

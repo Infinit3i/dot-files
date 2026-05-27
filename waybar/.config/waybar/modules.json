@@ -56,6 +56,12 @@
     "tooltip": false,
     "on-click": "~/.config/waybar/scripts/streamer_mode.sh"
   },
+  "custom/claude": {
+    "format": "󱚣",
+    "tooltip": true,
+    "tooltip-format": "Launch Claude Code",
+    "on-click": "kitty -e claude --dangerously-skip-permissions"
+  },
   // Hyprland Window
   "hyprland/window": {
     "max-length": 60,
@@ -149,7 +155,7 @@
     "on-scroll-down": "true"
   },
   "cpu": {
-    "format": " {usage}% ",
+    "format": " {usage}%",
     "on-click": "",
     "interval": 5,
     "on-scroll-up": "true",
@@ -161,7 +167,7 @@
     }
   },
   "memory": {
-    "format": "󰘚 {}% ",
+    "format": "󰘚 {}%",
     "interval": 5,
     "on-click": "kitty -e htop",
     "on-scroll-up": "true",
@@ -174,7 +180,7 @@
   },
   "disk": {
     "interval": 180,
-    "format": " {percentage_used}% ",
+    "format": " {percentage_used}%",
     "path": "/",
     "on-click": "",
     "on-scroll-up": "true",
@@ -242,11 +248,11 @@
   },
   "network": {
     "format": "{ifname}",
-    "format-wifi": "  {signalStrength}%",
-    "format-ethernet": "  {ifname}",
+    "format-wifi": " {signalStrength}%",
+    "format-ethernet": " {ifname}",
     "format-disconnected": "Disconnected ⚠",
     "tooltip-format": " {ifname} via {gwaddri}",
-    "tooltip-format-wifi": "  {ifname} @ {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz\nUp: {bandwidthUpBits} Down: {bandwidthDownBits}",
+    "tooltip-format-wifi": " {ifname} @ {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz\nUp: {bandwidthUpBits} Down: {bandwidthDownBits}",
     "tooltip-format-ethernet": " {ifname}\nIP: {ipaddr}\n up: {bandwidthUpBits} down: {bandwidthDownBits}",
     "tooltip-format-disconnected": "Disconnected",
     "max-length": 50,
@@ -282,7 +288,7 @@
   // Pulseaudio
   "pulseaudio": {
     "scroll-step": 1, // %, can be a float
-    "format": "{icon}  {volume}%",
+    "format": "{icon} {volume}%",
     "format-bluetooth": "{volume}% {icon} {format_source}",
     "format-bluetooth-muted": " {icon} {format_source}",
     "format-muted": " {format_source}",

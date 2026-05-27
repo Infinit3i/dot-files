@@ -6,9 +6,9 @@ temp_f=${temp_f#+}
 
 display="${temp_f}°F"
 
-if [ "$temp_f" -gt 60 ]; then
+if [ "$temp_f" -gt 72 ]; then
     echo "{\"text\":\"$display\",\"class\":\"hot\"}"
-elif [ "$temp_f" -lt 45 ]; then
+elif [ "$temp_f" -lt 40 ]; then
     echo "{\"text\":\"$display\",\"class\":\"cold\"}"
 else
     echo "{\"text\":\"$display\"}"

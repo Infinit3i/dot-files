@@ -75,7 +75,7 @@
   border-radius: 0px;
   border: none;
   margin: 0px 0px;
-  padding: 0px 6px;
+  padding: 0px 8px;
   color: #ffffff;
 }
 
@@ -108,6 +108,7 @@
 }
 
 /* Right-side modules — no individual bubbles, shared background from .modules-right */
+#custom-claude,
 #custom-streamer,
 #group-network,
 #custom-afw,
@@ -132,7 +133,7 @@
   border-radius: 0px;
   border: none;
   margin: 0px 0px;
-  padding: 0px 6px;
+  padding: 0px 8px;
   color: #ffffff;
 }
 
@@ -144,6 +145,7 @@
 }
 
 /* Right-side hover — dim text slightly, no background change */
+#custom-claude:hover,
 #custom-streamer:hover,
 #custom-clamav:hover,
 #custom-power:hover,
@@ -167,6 +169,8 @@
 
 #custom-dnd.on { color: #e35a00; }
 #custom-dnd.off { color: #ffffff; }
+
+#custom-claude { color: #d97757; }
 
 #custom-spotify,
 #custom-afw.normal,
@@ -201,7 +205,4 @@
     color: #257de1
 }
 
-#custom-streamer {
-  padding: 0px 14px 0px 8px;
-}
 

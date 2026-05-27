@@ -10,7 +10,7 @@ CLASS="critical"
 STATUS=$(sudo afw status 2>/dev/null) || true
 if [ -n "$STATUS" ]; then
   APPS=$(echo "$STATUS" | grep -oP 'Active apps:\s+\K[0-9]+')
-  PORTS=$(echo "$STATUS" | grep -c '→')
+  PORTS=$(echo "$STATUS" | grep -oP '→\s+\K\S+' | sort -u | wc -l)
   PENDING=$(sudo afw pending 2>/dev/null) || true
   BLOCKS=$(echo "$PENDING" | grep -cE '^\s+\S+.*\(') || true
   # Ensure integers
