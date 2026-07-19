@@ -57,11 +57,11 @@ status_json() {
   sel="$(cat "$SEL_FILE" 2>/dev/null || true)"
 
   if [[ -n "${cur:-}" ]]; then
-    txt=""
+    txt="󰖔"
     tooltip="Shader: $cur"
     class="on"
   else
-    txt=""
+    txt="󰖨"
     tooltip="Shader: off\nSelected: ${sel:-none}"
     class="off"
   fi
